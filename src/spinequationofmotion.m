@@ -1,4 +1,13 @@
 %Calculating the spin equation of motion
+if j == 1
+   SxT=-Sxy*sin(wL*tau);
+   SyT=Sxy*cos(wL*tau);
+   SzT=Sz0*ones(1,length(tau));
+else
+   SxT=[SxT(2:end),Sx(j)];
+   SyT=[SyT(2:end),Sy(j)];
+   SzT=[SzT(2:end),Sz(j)];
+end
 
 Beffx = -ejx;
 Beffy = -ejy;

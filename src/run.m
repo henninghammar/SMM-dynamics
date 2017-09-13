@@ -10,11 +10,11 @@ pR=0;
 gamma=1;
 g0(1)=gamma;
 g0(2)=gamma;
-eV(1)=4; %bias voltage on left lead
-eV(2)=-4; %bias voltage on right lead
+eV(1)=1; %bias voltage on left lead
+eV(2)=-1; %bias voltage on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
-B=0; %Magnetic field in Tesla
+B=1; %Magnetic field in Tesla
 J0=1.2; %Coupling strength
 Sz0=cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
@@ -25,7 +25,7 @@ eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
 tscale=1;
-tmax=0.2;
+tmax=5;
 tstep=0.05;
 tback=200;
 t0=0;%50*tstep;
@@ -51,3 +51,4 @@ clear    barejDMfieldx    barejDMfieldy    barejDMfieldz    barejHfield barejIfi
 %outputFolder = 'outfolder';
 %outputFilename = sprintf('%s/pulsebiasnha%02d.mat', outputFolder, bias);
 %save(outputFilename)
+%save('testX.mat')

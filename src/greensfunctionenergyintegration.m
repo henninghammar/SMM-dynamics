@@ -12,9 +12,6 @@ G1ygreat(i)=trapz(w,G1ygreat0(1,:)+G1ygreat0(2,:));
 G1zless(i)=trapz(w,G1zless0(1,:)+G1zless0(2,:));
 G1zgreat(i)=trapz(w,G1zgreat0(1,:)+G1zgreat0(2,:));
 
-Kless(i)=trapz(w,K0less(1,:)+K0less(2,:));
-Kgreat(i)=trapz(w,K0great(1,:)+K0great(2,:));
-
 G0less2(i)=trapz(w,G0less02(1,:)+G0less02(2,:));
 G0great2(i)=trapz(w,G0great02(1,:)+G0great02(2,:));
 

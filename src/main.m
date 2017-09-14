@@ -45,15 +45,20 @@ for j=1:length(t)
     tau = [-tstep2*tback+t(j):tstep2:t(j)];
     
     for i=1:tback+1 
-
+        
+%         S = [Sx(j), Sy(j), Sz(j)];
+%         
+%         %Green's function of (t',t)
+%         [G0less(j), G0great(j), G1xless(j), G1xgreat(j), G1yless(j), G1ygreat(j), G1zless(j), G1zgreat(j)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+%         
+%         %Green's function of (t',t)
+%         [G0less2(j), G0great2(j), G1xless2(j), G1xgreat2(j), G1yless2(j), G1ygreat2(j), G1zless2(j), G1zgreat2(j)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+        
         for k=1:2
             
             %Green's function of (t',t)
             baregreensfunction1
             fullgreensfunction1
-            
-            %Calculate self-energy K
-            selfenergyK            
 
             %Green's function of (t,t')
             baregreensfunction2
@@ -61,7 +66,9 @@ for j=1:length(t)
         end
         
         greensfunctionenergyintegration
-
+        
+        %Calculate self-energy K
+        selfenergyK
     end
     
     %Calculate charge and spin currents
@@ -87,6 +94,14 @@ for j=1:length(t)
     %Second step in Heuns method iteration
     for i=1:tback+1 
 
+        %S2 = [Sx2, Sy2, Sz2];
+        
+        %Green's function of (t',t)
+        %[G0less(j), G0great(j), G1xless(j), G1xgreat(j), G1yless(j), G1ygreat(j), G1zless(j), G1zgreat(j)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+        
+        %Green's function of (t',t)
+        %[G0less2(j), G0great2(j), G1xless2(j), G1xgreat2(j), G1yless2(j), G1ygreat2(j), G1zless2(j), G1zgreat2(j)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+        
         for k=1:2
             
             %Green's function of (t',t)
@@ -99,8 +114,12 @@ for j=1:length(t)
             baregreensfunction2
             fullgreensfunction2alt2
         end
-
+        
         greensfunctionenergyintegration
+        
+        %Calculate self-energy K
+        selfenergyK
+    
     end
     
     exchangeinteraction

@@ -107,9 +107,7 @@ for j=1:length(t)
             %Green's function of (t',t)
             baregreensfunction1
             fullgreensfunction1alt2
-            
-            selfenergyK
-            
+                        
             %Green's function of (t,t')
             baregreensfunction2
             fullgreensfunction2alt2

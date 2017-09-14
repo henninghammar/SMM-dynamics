@@ -51,7 +51,7 @@ clear jHtot jDMxtot jDMytot jDMztot jIxxtot jIyytot jIzztot jIxytot jIxztot jIyz
 clear    barejDMfieldx    barejDMfieldy    barejDMfieldz    barejHfield barejIfieldx barejIfieldy barejIfieldz
 
 %Savedata
-outputFolder = 'outfolder';
+%outputFolder = 'outfolder';
 %outputFilename = sprintf('%s/pulsebiasnha%02d.mat', outputFolder, bias);
-outputFilename = sprintf('%s/test1.mat', outputFolder);
-save(outputFilename)
+%outputFilename = sprintf('%s/test7.mat', outputFolder);
+%save(outputFilename)

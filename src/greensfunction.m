@@ -1,6 +1,6 @@
 function [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = greensfunction(t, tau, t0, t1, eps, g, g0, gS, eV, w, fermi, S, J)
 
-%Defining some variables
+%Defining some variables for speed
 A=zeros(2,length(w));
 B=zeros(2,length(w));
 C=zeros(2,2,length(w));
@@ -40,7 +40,6 @@ G1zgreat0=zeros(2,length(w));
 
 %Green's function for a voltage pulse
 for k=1:2
-    
     for m=1:2
         if tau < t0
                 A(m,:) = -(1./2).*(exp(-1i.*w.*tau)./(w-eps(m)+1i.*g(m)));

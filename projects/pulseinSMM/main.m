@@ -23,15 +23,17 @@ fermifunction
 %Initiating some variables for speed
 initiatingvariables
 
+%Run ODE-solver with Heuns method, i.e., S(n+1) = S(n) + h/2*(dS(n,S(n))+dS(n+h,S(n)+dS(n,S(n)))).
+%First loop over each timestep in t.
 for j=1:length(t)
-    
+
     %For calculations before t0 is performed with no exchange coupling J
     if t(j)>=t0
         J=J0;
     else
         J=0;
     end
-    
+
     %Time the calculation for each timestep
     if(t(j)==floor(t(j)))
         timestep=t(j);
@@ -39,93 +41,66 @@ for j=1:length(t)
         disp(['Timestep: ' num2str(timestep)])
         disp(['Timeused: ' num2str(timeused)])
     end
-    
+
     %Tau indicates integration from minus infinity to t. Here with a
     %cut-off at tback.
     tau = [-tstep2*tback+t(j):tstep2:t(j)];
-    
-    for i=1:tback+1 
-        
-%         S = [Sx(j), Sy(j), Sz(j)];
-%         
-%         %Green's function of (t',t)
-%         [G0less(j), G0great(j), G1xless(j), G1xgreat(j), G1yless(j), G1ygreat(j), G1zless(j), G1zgreat(j)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
-%         
-%         %Green's function of (t',t)
-%         [G0less2(j), G0great2(j), G1xless2(j), G1xgreat2(j), G1yless2(j), G1ygreat2(j), G1zless2(j), G1zgreat2(j)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
-        
-        for k=1:2
-            
-            %Green's function of (t',t)
-            baregreensfunction1
-            fullgreensfunction1
 
-            %Green's function of (t,t')
-            baregreensfunction2
-            fullgreensfunction2
-        end
-        
-        greensfunctionenergyintegration
-        
+    %Initiate first spin in Heuns method
+    S = [Sx(j), Sy(j), Sz(j)];
+
+    for i=1:tback+1
+        %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
+        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+
+        %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+
         %Calculate self-energy K
         selfenergyK
     end
-    
-    %Calculate charge and spin currents
+
+    %Calculate charge and spin currents by integration over tau
     currents
-    
+
     %Calculate the exchange interaction given the Green's functions
     exchangeinteraction
-    
+
     %Calculate the internal field given the Green's functions
     internalfield
-    
+
     %Spin equation of motion
     spinequationofmotion
-    
+
     %Saving the fields to plot
     savingfields
-    
-    %Calculate new spin for Heuns method iteration
+
+    %Calculate the second spin for Heuns method iteration
     Sx2=Sx(j)+dSx1;
     Sy2=Sy(j)+dSy1;
     Sz2=Sz(j)+dSz1;
-    
-    %Second step in Heuns method iteration
-    for i=1:tback+1 
+    S2 = [Sx2, Sy2, Sz2];
 
-        %S2 = [Sx2, Sy2, Sz2];
-        
-        %Green's function of (t',t)
-        %[G0less(j), G0great(j), G1xless(j), G1xgreat(j), G1yless(j), G1ygreat(j), G1zless(j), G1zgreat(j)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
-        
-        %Green's function of (t',t)
-        %[G0less2(j), G0great2(j), G1xless2(j), G1xgreat2(j), G1yless2(j), G1ygreat2(j), G1zless2(j), G1zgreat2(j)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
-        
-        for k=1:2
-            
-            %Green's function of (t',t)
-            baregreensfunction1
-            fullgreensfunction1alt2
-                        
-            %Green's function of (t,t')
-            baregreensfunction2
-            fullgreensfunction2alt2
-        end
-        
-        greensfunctionenergyintegration
-        
+    %Second step in Heuns method iteration
+    for i=1:tback+1
+
+        %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
+        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+
+        %Green's function of (tau, t) for each timestep tau with integration over energies w/omega
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+
         %Calculate self-energy K
         selfenergyK
-    
+
     end
-    
+
     exchangeinteraction
-    
+
     internalfield
-    
+
     spinequationofmotionalt2
-    
+
     %Calculate final spin and normalize it
     normalizingspin
 end

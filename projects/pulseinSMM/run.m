@@ -18,7 +18,7 @@ eV(2)=-1; %bias voltage on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
 B=1; %Magnetic field in Tesla
-J0=1.2; %Coupling strength
+J0=0.1; %Coupling strength
 Sz0=cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
@@ -28,9 +28,10 @@ eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
 tscale=1;
-tmax=5;
-tstep=0.05;
-tback=200;
+tmax=2;
+tstep=0.1;
+tstep2=0.1;
+tback=100;
 t0=0;%50*tstep;
 t1=3;
 
@@ -42,7 +43,7 @@ main
 
 toc
 
-clear G0less G0great G1xless G1xgreat G1yless G1ygreat G1zless G1zgreat G0less2 G0great2 G1xless2 G1xgreat2 G1yless2 G1ygreat2 G1zless2 G1zgreat2 Kless Kgreat   
+clear G0less G0great G1xless G1xgreat G1yless G1ygreat G1zless G1zgreat G0less2 G0great2 G1xless2 G1xgreat2 G1yless2 G1ygreat2 G1zless2 G1zgreat2 Kless Kgreat
 clear G0greattot   G1xgreattot   G1ygreattot  G1zgreattot   G0greattot2   G1xgreattot2    G1ygreattot2    G1zgreattot2
 clear G0greattotAlt    G1xgreattotAlt    G1ygreattotAlt    G1zgreattotAlt
 

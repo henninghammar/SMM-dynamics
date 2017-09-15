@@ -1,7 +1,6 @@
 %The core program
 
 %Integration values in time and energy
-tstep2=0.1;
 t=[0:tstep:tmax];
 step=0.1;
 w=[-20:step:20];

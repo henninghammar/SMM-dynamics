@@ -19,8 +19,8 @@ epsilon=0; %Energy level of the quantum dot
 eps(1)=epsilon;%+0.5*wL;
 eps(2)=epsilon;%-0.5*wL;
 
-tau = 1;
-t = 2;
+tau = 2;
+t = 4;
 t0=0;%50*tstep;
 t1=3;
 

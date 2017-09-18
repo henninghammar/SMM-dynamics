@@ -17,7 +17,7 @@ eV(1)=1; %bias voltage on left lead
 eV(2)=-1; %bias voltage on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
-B=1; %Magnetic field in Tesla
+B=0; %Magnetic field in Tesla
 J0=0.1; %Coupling strength
 Sz0=cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
@@ -28,7 +28,7 @@ eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
 tscale=1;
-tmax=2;
+tmax=5;
 tstep=0.1;
 tstep2=0.1;
 tback=100;

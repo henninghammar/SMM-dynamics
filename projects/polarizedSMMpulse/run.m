@@ -1,9 +1,9 @@
-% Non-polarized single-molecule magnet with pulse
+% Polarized single-molecule magnet with pulse
 % ================================================
 % Author: Henning Hammar
 % ------------------
-% Calculation of the spin dynamics and current through a degenerate single-molecule magnet
-% for a pulse using a generalized spin equation of motion.
+% Calculation of spin dynamics and current through a polarized single-molecule magnet
+% for a pulse.
 %
 % This file set all values needed in order to perform a run
 

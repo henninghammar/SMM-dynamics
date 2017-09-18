@@ -9,9 +9,9 @@ else
    SzT=[SzT(2:end),Sz(j)];
 end
 
-Beffx = -ejx;
-Beffy = -ejy;
-Beffz = wL-ejz;
+Beffx = -ejx + J*mx;
+Beffy = -ejy + J*my;
+Beffz = wL - ejz + J*mz;
 
 dSxbare=jH.*(Sy(j).*SzT-Sz(j).*SyT)+Sy(j).*(jIzx.*SxT+jIzy.*SyT+jIzz.*SzT)-Sz(j).*(jIyx.*SxT+jIyy.*SyT+jIyz.*SzT)-Sy(j).*(jDMx.*SyT-jDMy.*SxT)+Sz(j).*(jDMz.*SxT-jDMx.*SzT);
 dSybare=jH.*(Sz(j).*SxT-Sx(j).*SzT)+Sz(j).*(jIxx.*SxT+jIxy.*SyT+jIxz.*SzT)-Sx(j).*(jIzx.*SxT+jIzy.*SyT+jIzz.*SzT)-Sz(j).*(jDMy.*SzT-jDMz.*SyT)+Sx(j).*(jDMx.*SyT-jDMy.*SxT);

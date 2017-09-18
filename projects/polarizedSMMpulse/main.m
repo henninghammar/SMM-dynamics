@@ -1,11 +1,13 @@
-% Non-polarized single-molecule magnet with pulse
+% Polarized single-molecule magnet with pulse
 % ================================================
 % Author: Henning Hammar
 % ------------------
-% Calculation of the spin dynamics and current through a degenerate single-molecule magnet
-% for a pulse using a generalized spin equation of motion.
+% Calculation of spin dynamics and current through a polarized single-molecule magnet
+% for a pulse.
 %
-% This file contains the logic and main calculations. Here, the non-polarized Green's function is used.
+% This file contains the logic and main calculations. Here, the full Green's function is used.
+
+%WARNING: The QD magnetic occupation is not programmed correctly for this system.
 
 %Integration values in time and energy
 t=[0:tstep:tmax];
@@ -57,10 +59,10 @@ for j=1:length(t)
 
     for i=1:tback+1
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
-        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = SMMnonpolarizedgreensfunction(t(j), tau(i), t0, t1, epsilon, g0tot, g0, eV, w, fermi, S, J);
+        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
 
         %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
-        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)]= SMMnonpolarizedgreensfunction(tau(i), t(j), t0, t1, epsilon, g0tot, g0, eV, w, fermi, S, J);
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
 
         %Calculate self-energy K
         selfenergyK
@@ -76,7 +78,7 @@ for j=1:length(t)
     internalfield
 
     %Calculate the magnetic occupation of the QD
-    degenerateQDmagneticoccupation
+    QDmagneticoccupation
 
     %Spin equation of motion
     spinequationofmotion
@@ -94,10 +96,10 @@ for j=1:length(t)
     for i=1:tback+1
 
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
-        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = SMMnonpolarizedgreensfunction(t(j), tau(i), t0, t1, epsilon, g0tot, g0, eV, w, fermi, S2, J);
+        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
 
         %Green's function of (tau, t) for each timestep tau with integration over energies w/omega
-        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)]= SMMnonpolarizedgreensfunction(tau(i), t(j), t0, t1, epsilon, g0tot, g0, eV, w, fermi, S2, J);
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
 
         %Calculate self-energy K
         selfenergyK
@@ -108,7 +110,7 @@ for j=1:length(t)
 
     internalfield
 
-    degenerateQDmagneticoccupation2
+    QDmagneticoccupation2
 
     spinequationofmotionalt2
 

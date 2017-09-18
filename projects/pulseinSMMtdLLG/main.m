@@ -1,9 +1,9 @@
-% Non-polarized single-molecule magnet with pulse
+% Non-polarized single-molecule magnet with pulse with tdLLG
 % ================================================
 % Author: Henning Hammar
 % ------------------
 % Calculation of the spin dynamics and current through a degenerate single-molecule magnet
-% for a pulse using a generalized spin equation of motion.
+% for a pulse using time-dependent LLG equation of motion.
 %
 % This file contains the logic and main calculations. Here, the non-polarized Green's function is used.
 
@@ -19,6 +19,11 @@ Sz=zeros(1,length(t));
 Sx(1)=-Sxy*sin(wL*t0);
 Sy(1)=Sxy*cos(wL*t0);
 Sz(1)=Sz0;
+
+%Derivative used in tdLLG calculations
+dSx=-Sxy*wL*cos(wL*t0);
+dSy=-Sxy*wL*sin(wL*t0);
+dSz=0;
 
 %Polarized gamma for leads with different magnetization
 polarizedgamma
@@ -79,7 +84,7 @@ for j=1:length(t)
     degenerateQDmagneticoccupation
 
     %Spin equation of motion
-    spinequationofmotion
+    spinequationofmotiontdLLG
 
     %Saving the fields to plot
     savingfields
@@ -110,7 +115,7 @@ for j=1:length(t)
 
     degenerateQDmagneticoccupation2
 
-    spinequationofmotionalt2
+    spinequationofmotiontdLLG2
 
     %Calculate final spin and normalize it
     normalizingspin

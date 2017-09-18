@@ -132,8 +132,8 @@ for k=1:2
     g1less0(k,:)=(1i./(2*pi)).*fermi(k,:).*(gammaS(k).*(A0(k,:).*B0(k,:)+A1(k,:).*B1(k,:))+gamma0(k).*(A0(k,:).*B1(k,:)+A1(k,:).*B0(k,:)));
     g1great0(k,:)=-(1i./(2*pi)).*(1-fermi(k,:)).*(gammaS(k).*(A0(k,:).*B0(k,:)+A1(k,:).*B1(k,:))+gamma0(k).*(A0(k,:).*B1(k,:)+A1(k,:).*B0(k,:)));
 
-    G1zless0(k,:)=g1less0(k,:)-J.*S(3).*(1i./(2*pi)).*fermi(k,:).*(E00(k,:)+F00(k,:));
-    G1zgreat0(k,:)=g1great0(k,:)+J.*S(3).*(1i./(2*pi)).*(1-fermi(k,:)).*(E00(k,:)+F00(k,:));
+    G1zless0(k,:)=g1less0(k,:)-J.*S(3).*(1i./(2*pi)).*fermi(k,:).*(E00(k,:)+F00(k,:)+E11(k,:)+F11(k,:));
+    G1zgreat0(k,:)=g1great0(k,:)+J.*S(3).*(1i./(2*pi)).*(1-fermi(k,:)).*(E00(k,:)+F00(k,:)+E11(k,:)+F11(k,:));
 end
 
 %Integrating over energies for the different Green's functions

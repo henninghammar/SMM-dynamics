@@ -16,3 +16,7 @@ dSzbare2=jH.*(Sx2.*dSy1-Sy2.*dSx1)+Sx2.*(jIyx.*dSx1+jIyy.*dSy1+jIyz.*dSz1)-Sy2.*
 dSx2=-Beffz.*Sy2+Beffy.*Sz2+trapz(tau,dSxbare1-(t(j)-tau).*dSxbare2);
 dSy2=-Beffx.*Sz2+Beffz.*Sx2+trapz(tau,dSybare1-(t(j)-tau).*dSybare2);
 dSz2=-Beffy.*Sx2+Beffx.*Sy2+trapz(tau,dSzbare1-(t(j)-tau).*dSzbare2);
+
+dSx=(dSx1+dSx2)/2;
+dSy=(dSy1+dSy2)/2;
+dSz=(dSz1+dSz2)/2;

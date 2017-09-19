@@ -87,7 +87,7 @@ for j=1:length(t)
     spinequationofmotiontdLLG
 
     %Saving the fields to plot
-    savingfields
+    %savingfields
 
     %Calculate the second spin for Heuns method iteration
     Sx2=Sx(j)+dSx1;

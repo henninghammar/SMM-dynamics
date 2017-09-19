@@ -1,14 +1,4 @@
 %The spin equation of motion for LLG solution
-if j == 1
-   SxT=-Sxy*sin(wL*tau);
-   SyT=Sxy*cos(wL*tau);
-   SzT=Sz0*ones(1,length(tau));
-else
-   SxT=[SxT(2:end),Sx(j)];
-   SyT=[SyT(2:end),Sy(j)];
-   SzT=[SzT(2:end),Sz(j)];
-end
-
 Beffx = -ejx + J*mx;
 Beffy = -ejy + J*my;
 Beffz = wL - ejz + J*mz;

@@ -1,8 +1,4 @@
 %The spin equation of motion for LLG solution
-SxT2=[SxT(2:end),Sx2];
-SyT2=[SyT(2:end),Sy2];
-SzT2=[SzT(2:end),Sz2];
-
 Beffx = -ejx + J*mx;
 Beffy = -ejy + J*my;
 Beffz = wL - ejz + J*mz;

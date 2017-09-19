@@ -57,13 +57,18 @@ for j=1:length(t)
     %cut-off at tback.
     tau = [-tstep2*tback+t(j):tstep2:t(j)];
 
+    S = [Sx(j), Sy(j), Sz(j)];
+    dS = [dSx, dSy, dSz];
+
     %Calculate the interactionparameters for the first timestep
     if j == 1
-        S = [Sx(1),Sy(1),Sz(1)];
         [jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jDMx, jDMy, jDMz, ejx, ejy, ejz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyz, GjDMx, GjDMy, GjDMz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, step, J, S, wL, beta);
 
         %Calculate the magnetic occupation of the QD
-        degenerateQDmagneticoccupation
+        [mx, my, mz] = degenerateQDmagneticoccupation(w, epsilon, g0tot, J, fermi, S);
+
+        %Calculate the effective fields
+        effectivefields
 
         jIyx = jIxy;
         jIzx = jIxz;
@@ -74,15 +79,21 @@ for j=1:length(t)
     end
 
     %Spin equation of motion
-    spinequationofmotionLLGconstant
+    [dSx1, dSy1, dSz1] = spinequationofmotionLLGconstant(Beffx, Beffy, Beffz, jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jIyx, jIzx, jIzy, jDMx, jDMy, jDMz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyx, GjIzx, GjIzy, GjIyz, GjDMx, GjDMy, GjDMz, S, dS);
 
     %Calculate the second spin for Heuns method iteration
     Sx2=Sx(j)+dSx1;
     Sy2=Sy(j)+dSy1;
     Sz2=Sz(j)+dSz1;
     S2 = [Sx2, Sy2, Sz2];
+    dS1 = [dSx1, dSy1, dSz1];
 
-    spinequationofmotionLLGconstant2
+    %Spin equation of motion
+    [dSx2, dSy2, dSz2] = spinequationofmotionLLGconstant(Beffx, Beffy, Beffz, jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jIyx, jIzx, jIzy, jDMx, jDMy, jDMz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyx, GjIzx, GjIzy, GjIyz, GjDMx, GjDMy, GjDMz, S2, dS1);
+
+    dSx=(dSx1+dSx2)/2;
+    dSy=(dSy1+dSy2)/2;
+    dSz=(dSz1+dSz2)/2;
 
     %Calculate final spin and normalize it
     normalizingspin

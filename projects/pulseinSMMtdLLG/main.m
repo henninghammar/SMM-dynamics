@@ -59,6 +59,7 @@ for j=1:length(t)
 
     %Initiate first spin in Heuns method
     S = [Sx(j), Sy(j), Sz(j)];
+    dS = [dSx, dSy, dSz];
 
     for i=1:tback+1
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
@@ -81,19 +82,23 @@ for j=1:length(t)
     internalfield
 
     %Calculate the magnetic occupation of the QD
-    degenerateQDmagneticoccupation
+    [mx, my, mz] = degenerateQDmagneticoccupation(w, epsilon, g0tot, J, fermi, S);
+
+    %Calculate the effective fields
+    effectivefields
 
     %Spin equation of motion
-    spinequationofmotiontdLLG
+    [dSx1, dSy1, dSz1] = spinequationofmotiontdLLG(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, dS, tau, t(j));
 
     %Saving the fields to plot
-    %savingfields
+    savingfieldstdLLG
 
     %Calculate the second spin for Heuns method iteration
     Sx2=Sx(j)+dSx1;
     Sy2=Sy(j)+dSy1;
     Sz2=Sz(j)+dSz1;
     S2 = [Sx2, Sy2, Sz2];
+    dS1 = [dSx1, dSy1, dSz1];
 
     %Second step in Heuns method iteration
     for i=1:tback+1
@@ -113,9 +118,16 @@ for j=1:length(t)
 
     internalfield
 
-    degenerateQDmagneticoccupation2
+    [mx, my, mz] = degenerateQDmagneticoccupation(w, epsilon, g0tot, J, fermi, S2);
 
-    spinequationofmotiontdLLG2
+    effectivefields
+
+    %Spin equation of motion
+    [dSx2, dSy2, dSz2] = spinequationofmotiontdLLG(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S2, dS1, tau, t(j));
+
+    dSx=(dSx1+dSx2)/2;
+    dSy=(dSy1+dSy2)/2;
+    dSz=(dSz1+dSz2)/2;
 
     %Calculate final spin and normalize it
     normalizingspin

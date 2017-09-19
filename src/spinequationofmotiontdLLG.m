@@ -1,14 +1,14 @@
-%The spin equation of motion for LLG solution
-Beffx = -ejx + J*mx;
-Beffy = -ejy + J*my;
-Beffz = wL - ejz + J*mz;
+function [dSx, dSy, dSz] = spinequationofmotiontdLLG(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, dS, tau, t)
 
-dSxbare1=jH.*(Sy(j).*Sz(j)-Sz(j).*Sy(j))+Sy(j).*(jIzx.*Sx(j)+jIzy.*Sy(j)+jIzz.*Sz(j))-Sz(j).*(jIyx.*Sx(j)+jIyy.*Sy(j)+jIyz.*Sz(j))-Sy(j).*(jDMx.*Sy(j)-jDMy.*Sx(j))+Sz(j).*(jDMz.*Sx(j)-jDMx.*Sz(j));
-dSybare1=jH.*(Sz(j).*Sx(j)-Sx(j).*Sz(j))+Sz(j).*(jIxx.*Sx(j)+jIxy.*Sy(j)+jIxz.*Sz(j))-Sx(j).*(jIzx.*Sx(j)+jIzy.*Sy(j)+jIzz.*Sz(j))-Sz(j).*(jDMy.*Sz(j)-jDMz.*Sy(j))+Sx(j).*(jDMx.*Sy(j)-jDMy.*Sx(j));
-dSzbare1=jH.*(Sx(j).*Sy(j)-Sy(j).*Sx(j))+Sx(j).*(jIyx.*Sx(j)+jIyy.*Sy(j)+jIyz.*Sz(j))-Sy(j).*(jIxx.*Sx(j)+jIxy.*Sy(j)+jIxz.*Sz(j))-Sx(j).*(jDMz.*Sx(j)-jDMx.*Sz(j))+Sy(j).*(jDMy.*Sz(j)-jDMz.*Sy(j));
-dSxbare2=jH.*(Sy(j).*dSz-Sz(j).*dSy)+Sy(j).*(jIzx.*dSx+jIzy.*dSy+jIzz.*dSz)-Sz(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz)-Sy(j).*(jDMx.*dSy-jDMy.*dSx)+Sz(j).*(jDMz.*dSx-jDMx.*dSz);
-dSybare2=jH.*(Sz(j).*dSx-Sx(j).*dSz)+Sz(j).*(jIxx.*dSx+jIxy.*dSy+jIxz.*dSz)-Sx(j).*(jIzx.*dSx+jIzy.*dSy+jIzz.*dSz)-Sz(j).*(jDMy.*dSz-jDMz.*dSy)+Sx(j).*(jDMx.*dSy-jDMy.*dSx);
-dSzbare2=jH.*(Sx(j).*dSy-Sy(j).*dSx)+Sx(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz)-Sy(j).*(jIxx.*dSx+jIxy.*dSy+jIxz.*dSz)-Sx(j).*(jDMz.*dSx-jDMx.*dSz)+Sy(j).*(jDMy.*dSz-jDMz.*dSy);
-dSx1=-Beffz.*Sy(j)+Beffy.*Sz(j)+trapz(tau,dSxbare1-(t(j)-tau).*dSxbare2);
-dSy1=-Beffx.*Sz(j)+Beffz.*Sx(j)+trapz(tau,dSybare1-(t(j)-tau).*dSybare2);
-dSz1=-Beffy.*Sx(j)+Beffx.*Sy(j)+trapz(tau,dSzbare1-(t(j)-tau).*dSzbare2);
+dSxbare1=jH.*(S(2).*S(3)-S(3).*S(2))+S(2).*(jIzx.*S(1)+jIzy.*S(2)+jIzz.*S(3))-S(3).*(jIyx.*S(1)+jIyy.*S(2)+jIyz.*S(3))-S(2).*(jDMx.*S(2)-jDMy.*S(1))+S(3).*(jDMz.*S(1)-jDMx.*S(3));
+dSybare1=jH.*(S(3).*S(1)-S(1).*S(3))+S(3).*(jIxx.*S(1)+jIxy.*S(2)+jIxz.*S(3))-S(1).*(jIzx.*S(1)+jIzy.*S(2)+jIzz.*S(3))-S(3).*(jDMy.*S(3)-jDMz.*S(2))+S(1).*(jDMx.*S(2)-jDMy.*S(1));
+dSzbare1=jH.*(S(1).*S(2)-S(2).*S(1))+S(1).*(jIyx.*S(1)+jIyy.*S(2)+jIyz.*S(3))-S(2).*(jIxx.*S(1)+jIxy.*S(2)+jIxz.*S(3))-S(1).*(jDMz.*S(1)-jDMx.*S(3))+S(2).*(jDMy.*S(3)-jDMz.*S(2));
+dSxbare2=jH.*(S(2).*dS(3)-S(3).*dS(2))+S(2).*(jIzx.*dS(1)+jIzy.*dS(2)+jIzz.*dS(3))-S(3).*(jIyx.*dS(1)+jIyy.*dS(2)+jIyz.*dS(3))-S(2).*(jDMx.*dS(2)-jDMy.*dS(1))+S(3).*(jDMz.*dS(1)-jDMx.*dS(3));
+dSybare2=jH.*(S(3).*dS(1)-S(1).*dS(3))+S(3).*(jIxx.*dS(1)+jIxy.*dS(2)+jIxz.*dS(3))-S(1).*(jIzx.*dS(1)+jIzy.*dS(2)+jIzz.*dS(3))-S(3).*(jDMy.*dS(3)-jDMz.*dS(2))+S(1).*(jDMx.*dS(2)-jDMy.*dS(1));
+dSzbare2=jH.*(S(1).*dS(2)-S(2).*dS(1))+S(1).*(jIyx.*dS(1)+jIyy.*dS(2)+jIyz.*dS(3))-S(2).*(jIxx.*dS(1)+jIxy.*dS(2)+jIxz.*dS(3))-S(1).*(jDMz.*dS(1)-jDMx.*dS(3))+S(2).*(jDMy.*dS(3)-jDMz.*dS(2));
+
+dSx=-Beffz.*S(2)+Beffy.*S(3)+trapz(tau,dSxbare1-(t-tau).*dSxbare2);
+dSy=-Beffx.*S(3)+Beffz.*S(1)+trapz(tau,dSybare1-(t-tau).*dSybare2);
+dSz=-Beffy.*S(1)+Beffx.*S(2)+trapz(tau,dSzbare1-(t-tau).*dSzbare2);
+
+end

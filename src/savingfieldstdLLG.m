@@ -14,6 +14,9 @@ SxjDMy(j)=trapz(tau,-Sz(j).*(jDMy.*Sz(j)-jDMz.*Sy(j))+Sx(j).*(jDMx.*Sy(j)-jDMy.*
 SxjDMz(j)=trapz(tau,-Sx(j).*(jDMz.*Sx(j)-jDMx.*Sz(j))+Sy(j).*(jDMy.*Sz(j)-jDMz.*Sy(j)));
 
 %Det effektiva magnetf�ltet best�ende av ej + B + J*S
+dSxbare1=jH.*(Sy(j).*Sz(j)-Sz(j).*Sy(j))+Sy(j).*(jIzx.*Sx(j)+jIzy.*Sy(j)+jIzz.*Sz(j))-Sz(j).*(jIyx.*Sx(j)+jIyy.*Sy(j)+jIyz.*Sz(j))-Sy(j).*(jDMx.*Sy(j)-jDMy.*Sx(j))+Sz(j).*(jDMz.*Sx(j)-jDMx.*Sz(j));
+dSybare1=jH.*(Sz(j).*Sx(j)-Sx(j).*Sz(j))+Sz(j).*(jIxx.*Sx(j)+jIxy.*Sy(j)+jIxz.*Sz(j))-Sx(j).*(jIzx.*Sx(j)+jIzy.*Sy(j)+jIzz.*Sz(j))-Sz(j).*(jDMy.*Sz(j)-jDMz.*Sy(j))+Sx(j).*(jDMx.*Sy(j)-jDMy.*Sx(j));
+dSzbare1=jH.*(Sx(j).*Sy(j)-Sy(j).*Sx(j))+Sx(j).*(jIyx.*Sx(j)+jIyy.*Sy(j)+jIyz.*Sz(j))-Sy(j).*(jIxx.*Sx(j)+jIxy.*Sy(j)+jIxz.*Sz(j))-Sx(j).*(jDMz.*Sx(j)-jDMx.*Sz(j))+Sy(j).*(jDMy.*Sz(j)-jDMz.*Sy(j));
 SBeffx(j)=-Beffz.*Sy(j)+Beffy.*Sz(j)+trapz(tau,dSxbare1);
 SBeffy(j)=-Beffx.*Sz(j)+Beffz.*Sx(j)+trapz(tau,dSybare1);
 SBeffz(j)=-Beffy.*Sx(j)+Beffx.*Sy(j)+trapz(tau,dSzbare1);
@@ -40,29 +43,6 @@ dSzbarejIz(:,j)=-(t(j)-tau).*(Sx(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz)-Sy(j).*(jIx
 SjIx(j)=trapz(tau,dSxbarejIx(:,j));
 SjIy(j)=trapz(tau,dSybarejIy(:,j));
 SjIz(j)=trapz(tau,dSzbarejIz(:,j));
-
-%Dessa parametrar ber�knar ut tr�ghetstensorn i de olika
-%riktningarna
-ddSxbarejH(:,j)=0.5*(t(j)-tau).^2.*jH.*(Sy(j).*ddSz-Sz(j).*ddSy);
-ddSybarejH(:,j)=0.5*(t(j)-tau).^2.*jH.*(Sz(j).*ddSx-Sx(j).*ddSz);
-ddSzbarejH(:,j)=0.5*(t(j)-tau).^2.*jH.*(Sx(j).*ddSy-Sy(j).*ddSx);
-dSjHx(j)=trapz(tau,ddSxbarejH(:,j));
-dSjHy(j)=trapz(tau,ddSybarejH(:,j));
-dSjHz(j)=trapz(tau,ddSzbarejH(:,j));
-
-ddSxbarejDMx(:,j)=-0.5*(t(j)-tau).^2.*(Sy(j).*(jDMx.*ddSy-jDMy.*ddSx)+Sz(j).*(jDMz.*ddSx-jDMx.*ddSz));
-ddSybarejDMy(:,j)=-0.5*(t(j)-tau).^2.*(Sz(j).*(jDMy.*ddSz-jDMz.*ddSy)+Sx(j).*(jDMx.*ddSy-jDMy.*ddSx));
-ddSzbarejDMz(:,j)=-0.5*(t(j)-tau).^2.*(Sx(j).*(jDMz.*ddSx-jDMx.*ddSz)+Sy(j).*(jDMy.*ddSz-jDMz.*ddSy));
-dSjDMx(j)=trapz(tau,ddSxbarejDMx(:,j));
-dSjDMy(j)=trapz(tau,ddSybarejDMy(:,j));
-dSjDMz(j)=trapz(tau,ddSzbarejDMz(:,j));
-
-ddSxbarejIx(:,j)=0.5*(t(j)-tau).^2.*(Sy(j).*(jIzx.*ddSx+jIzy.*dSy+jIzz.*ddSz)-Sz(j).*(jIyx.*ddSx+jIyy.*ddSy+jIyz.*ddSz));
-ddSybarejIy(:,j)=0.5*(t(j)-tau).^2.*(Sz(j).*(jIxx.*ddSx+jIxy.*dSy+jIxz.*ddSz)-Sx(j).*(jIzx.*ddSx+jIzy.*ddSy+jIzz.*ddSz));
-ddSzbarejIz(:,j)=0.5*(t(j)-tau).^2.*(Sx(j).*(jIyx.*ddSx+jIyy.*dSy+jIyz.*ddSz)-Sy(j).*(jIxx.*ddSx+jIxy.*ddSy+jIxz.*ddSz));
-dSjIx(j)=trapz(tau,ddSxbarejIx(:,j));
-dSjIy(j)=trapz(tau,ddSybarejIy(:,j));
-dSjIz(j)=trapz(tau,ddSzbarejIz(:,j));
 
 %The fields acting on the spin
 Beffxvect(j)=Beffx;

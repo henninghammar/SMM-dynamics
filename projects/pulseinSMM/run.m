@@ -29,8 +29,8 @@ Sz0=cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
 epsilon=0; %Energy level of the quantum dot
-eps(1)=epsilon+0.5*wL;
-eps(2)=epsilon-0.5*wL;
+eps(1)=epsilon;%+0.5*wL;
+eps(2)=epsilon;%-0.5*wL;
 
 %Time variables and time and energy step-size
 tscale=1;

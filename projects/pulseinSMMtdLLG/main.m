@@ -133,5 +133,6 @@ for j=1:length(t)
     normalizingspin
 end
 
-%Converting time and currents to SI-units
-SIconvert
+%Converting time and currents units
+timetotempunits
+currentSIconvert

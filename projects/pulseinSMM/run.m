@@ -9,8 +9,10 @@
 
 clear
 
+%Add source folder
 addpath('../../src')
 
+%Start timer
 tic
 
 %Initial values
@@ -33,17 +35,16 @@ eps(1)=epsilon;%+0.5*wL;
 eps(2)=epsilon;%-0.5*wL;
 
 %Time variables and time and energy step-size
-tscale=1;
-tmax=5;
-tstep=0.1;
-tstep2=0.1;
-tback=100;
-t0=0;%50*tstep;
-t1=3;
+tmax=5; %Maximum time of simulation
+tstep=0.1; %Time step for simulation
+tstep2=0.1; %Time step for integration over memory kernel
+tback=100; %Time steps for integration over memory kernel
+t0=0; %Intial time when pulse goes of
+t1=3; %Time when pulse stop
 
 kB=8.617324*10^-2; %Boltzmanns constant, in meV*K^-1
-T(1)=1; %Temperature in K
-T(2)=1;
+T(1)=1; %Temperature in K for left lead
+T(2)=1; %Temperature in K for right lead
 
 main
 

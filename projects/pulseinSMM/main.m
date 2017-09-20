@@ -52,6 +52,7 @@ for j=1:length(t)
     %cut-off at tback.
     tau = [-tstep2*tback+t(j):tstep2:t(j)];
 
+    %Initialize spin for integration over the memory kernel
     if j == 1
        SxT=-Sxy*sin(wL*tau);
        SyT=Sxy*cos(wL*tau);
@@ -137,5 +138,6 @@ for j=1:length(t)
     normalizingspin
 end
 
-%Converting time and currents to SI-units
-SIconvert
+%Converting time and currents units
+timetotempunits
+currentSIconvert

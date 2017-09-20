@@ -9,7 +9,7 @@
 
 clear
 
-addpath('/Users/henha132/Dropbox/Git/mgft/src')
+addpath('../../src')
 
 tic
 

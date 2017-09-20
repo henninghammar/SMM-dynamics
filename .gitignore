@@ -1,2 +1,3 @@
-#Ignore mat-files
+#Ignore mat-files and figure files
 *.mat
+*.fig

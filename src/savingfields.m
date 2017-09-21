@@ -1,9 +1,17 @@
-%Saving the interesting fields 
+%Saving the interesting fields
 
 %Fields with spin
 SBx(j)=-Beffz.*Sy(j)+Beffy.*Sz(j);
 SBy(j)=-Beffx.*Sz(j)+Beffz.*Sx(j);
 SBz(j)=-Beffy.*Sx(j)+Beffx.*Sy(j);
+
+Sejx(j)=ejz.*Sy(j)-ejy.*Sz(j);
+Sejy(j)=ejx.*Sz(j)-ejz.*Sx(j);
+Sejz(j)=ejy.*Sx(j)-ejx.*Sy(j);
+
+Smx(j)=-mz.*Sy(j)+my.*Sz(j);
+Smy(j)=-mx.*Sz(j)+mz.*Sx(j);
+Smz(j)=-my.*Sx(j)+mx.*Sy(j);
 
 dSxbarejH(:,j)=jH.*(Sy(j).*SzT-Sz(j).*SyT);
 dSybarejH(:,j)=jH.*(Sz(j).*SxT-Sx(j).*SzT);
@@ -24,9 +32,17 @@ dSybarejIy(:,j)=Sz(j).*(jIxx.*SxT+jIxy.*SyT+jIxz.*SzT)-Sx(j).*(jIzx.*SxT+jIzy.*S
 dSzbarejIz(:,j)=Sx(j).*(jIyx.*SxT+jIyy.*SyT+jIyz.*SzT)-Sy(j).*(jIxx.*SxT+jIxy.*SyT+jIxz.*SzT);
 SjIx(j)=trapz(tau,dSxbarejIx(:,j));
 SjIy(j)=trapz(tau,dSybarejIy(:,j));
-SjIz(j)=trapz(tau,dSzbarejIz(:,j));     
+SjIz(j)=trapz(tau,dSzbarejIz(:,j));
 
 %The fields acting on the spin
+ejxvect(j)=ejx;
+ejyvect(j)=ejy;
+ejzvect(j)=ejz;
+
+mxvect(j)=mx;
+myvect(j)=my;
+mzvect(j)=mz;
+
 Beffxvect(j)=Beffx;
 Beffyvect(j)=Beffy;
 Beffzvect(j)=Beffz;
@@ -39,18 +55,18 @@ barejIfieldy(:,j)=jIyx.*SxT+jIyy.*SyT+jIyz.*SzT;
 barejIfieldz(:,j)=jIzx.*SxT+jIzy.*SyT+jIzz.*SzT;
 jIfieldx(j)=trapz(tau,barejIfieldx(:,j));
 jIfieldy(j)=trapz(tau,barejIfieldy(:,j));
-jIfieldz(j)=trapz(tau,barejIfieldz(:,j));  
+jIfieldz(j)=trapz(tau,barejIfieldz(:,j));
 
 barejDMfieldx(:,j)=jDMz.*SyT-jDMy.*SzT;
 barejDMfieldy(:,j)=jDMx.*SzT-jDMz.*SxT;
 barejDMfieldz(:,j)=jDMy.*SxT-jDMx.*SyT;
 jDMfieldx(j)=trapz(tau,barejDMfieldx(:,j));
 jDMfieldy(j)=trapz(tau,barejDMfieldy(:,j));
-jDMfieldz(j)=trapz(tau,barejDMfieldz(:,j)); 
+jDMfieldz(j)=trapz(tau,barejDMfieldz(:,j));
 
 jHtot(:,j)=jH;
 jDMxtot(:,j)=jDMx;
-jDMytot(:,j)=jDMy;    
+jDMytot(:,j)=jDMy;
 jDMztot(:,j)=jDMz;
 jIxxtot(:,j)=jIxx;
 jIyytot(:,j)=jIyy;
@@ -61,7 +77,7 @@ jIyztot(:,j)=jIyz;
 
 jHt(j)=trapz(tau,jH);
 jDMxt(j)=trapz(tau,jDMx);
-jDMyt(j)=trapz(tau,jDMy);    
+jDMyt(j)=trapz(tau,jDMy);
 jDMzt(j)=trapz(tau,jDMz);
 jIxxt(j)=trapz(tau,jIxx);
 jIyyt(j)=trapz(tau,jIyy);

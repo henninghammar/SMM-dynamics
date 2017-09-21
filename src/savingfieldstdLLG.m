@@ -1,6 +1,15 @@
+%Fields with spin
 SBx(j)=-Beffz.*Sy(j)+Beffy.*Sz(j);
 SBy(j)=-Beffx.*Sz(j)+Beffz.*Sx(j);
 SBz(j)=-Beffy.*Sx(j)+Beffx.*Sy(j);
+
+Sejx(j)=ejz.*Sy(j)-ejy.*Sz(j);
+Sejy(j)=ejx.*Sz(j)-ejz.*Sx(j);
+Sejz(j)=ejy.*Sx(j)-ejx.*Sy(j);
+
+Smx(j)=-mz.*Sy(j)+my.*Sz(j);
+Smy(j)=-mx.*Sz(j)+mz.*Sx(j);
+Smz(j)=-my.*Sx(j)+mx.*Sy(j);
 
 %V�xelverkan Sxj*S
 SxjHx(j)=trapz(tau,jH.*(Sy(j).*Sz(j)-Sz(j).*Sy(j)));
@@ -45,6 +54,14 @@ SjIy(j)=trapz(tau,dSybarejIy(:,j));
 SjIz(j)=trapz(tau,dSzbarejIz(:,j));
 
 %The fields acting on the spin
+ejxvect(j)=ejx;
+ejyvect(j)=ejy;
+ejzvect(j)=ejz;
+
+mxvect(j)=mx;
+myvect(j)=my;
+mzvect(j)=mz;
+
 Beffxvect(j)=Beffx;
 Beffyvect(j)=Beffy;
 Beffzvect(j)=Beffz;

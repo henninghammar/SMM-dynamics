@@ -68,7 +68,7 @@ xlabel('time')
 ylabel(axisvariable)
 colormap morgenstemning
 colorbar
-saveas(h15,strcat(outfolder,'Sycontour'),'fig');
+saveas(h15,strcat(outfolder,'Szcontour'),'fig');
 
 h16=figure(16);
 contourf(t, values, Icm,100,'Linestyle','none')
@@ -77,7 +77,7 @@ xlabel('time')
 ylabel(axisvariable)
 colormap morgenstemning
 colorbar
-saveas(h16,strcat(outfolder,'Szcontour'),'fig');
+saveas(h16,strcat(outfolder,'Iccontour'),'fig');
 
 h17=figure(17);
 contourf(t, values, ISxm,100,'Linestyle','none')

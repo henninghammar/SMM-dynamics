@@ -1,3 +1,5 @@
 #Ignore mat-files and figure files
 *.mat
 *.fig
+output/
+simulations/

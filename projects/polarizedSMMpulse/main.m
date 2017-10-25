@@ -54,8 +54,20 @@ for j=1:length(t)
     %cut-off at tback.
     tau = [-tstep2*tback+t(j):tstep2:t(j)];
 
+    %Initialize spin for integration over the memory kernel
+    if j == 1
+       SxT=-Sxy*sin(wL*tau);
+       SyT=Sxy*cos(wL*tau);
+       SzT=Sz0*ones(1,length(tau));
+    else
+       SxT=[SxT(2:end),Sx(j)];
+       SyT=[SyT(2:end),Sy(j)];
+       SzT=[SzT(2:end),Sz(j)];
+    end
+
     %Initiate first spin in Heuns method
     S = [Sx(j), Sy(j), Sz(j)];
+    ST = [SxT, SyT, SzT];
 
     for i=1:tback+1
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
@@ -78,10 +90,13 @@ for j=1:length(t)
     internalfield
 
     %Calculate the magnetic occupation of the QD
-    QDmagneticoccupation
+    [mx, my, mz] = QDmagneticoccupation(eps, g, g0, gS, eV, w, fermi, S, J);
+
+    %Calculate the effective fields
+    effectivefields
 
     %Spin equation of motion
-    spinequationofmotion
+    [dSx1, dSy1, dSz1] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, ST, tau);
 
     %Saving the fields to plot
     savingfields
@@ -90,7 +105,11 @@ for j=1:length(t)
     Sx2=Sx(j)+dSx1;
     Sy2=Sy(j)+dSy1;
     Sz2=Sz(j)+dSz1;
+    SxT2=[SxT(2:end),Sx2];
+    SyT2=[SyT(2:end),Sy2];
+    SzT2=[SzT(2:end),Sz2];
     S2 = [Sx2, Sy2, Sz2];
+    ST2 = [SxT2, SyT2, SzT2];
 
     %Second step in Heuns method iteration
     for i=1:tback+1
@@ -110,13 +129,16 @@ for j=1:length(t)
 
     internalfield
 
-    QDmagneticoccupation2
+    [mx, my, mz] = QDmagneticoccupation(eps, g, g0, gS, eV, w, fermi, S2, J);
 
-    spinequationofmotionalt2
+    effectivefields
+
+    %Spin equation of motion
+    [dSx2, dSy2, dSz2] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S2, ST2, tau);
 
     %Calculate final spin and normalize it
     normalizingspin
 end
 
-%Converting time and currents to SI-units
-SIconvert
+%Converting currents units
+currentSIconvert

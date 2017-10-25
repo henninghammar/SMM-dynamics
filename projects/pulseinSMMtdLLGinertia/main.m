@@ -143,5 +143,4 @@ for j=1:length(t)
 end
 
 %Converting time and currents units
-timetotempunits
 currentSIconvert

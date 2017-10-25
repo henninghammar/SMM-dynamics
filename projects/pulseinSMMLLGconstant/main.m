@@ -81,6 +81,19 @@ for j=1:length(t)
     %Spin equation of motion
     [dSx1, dSy1, dSz1] = spinequationofmotionLLGconstant(Beffx, Beffy, Beffz, jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jIyx, jIzx, jIzy, jDMx, jDMy, jDMz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyx, GjIzx, GjIzy, GjIyz, GjDMx, GjDMy, GjDMz, S, dS);
 
+    %Saving fields
+    SBx(j)=-Beffz.*Sy(j)+Beffy.*Sz(j);
+    SBy(j)=-Beffx.*Sz(j)+Beffz.*Sx(j);
+    SBz(j)=-Beffy.*Sx(j)+Beffx.*Sy(j);
+
+    Sejx(j)=ejz.*Sy(j)-ejy.*Sz(j);
+    Sejy(j)=ejx.*Sz(j)-ejz.*Sx(j);
+    Sejz(j)=ejy.*Sx(j)-ejx.*Sy(j);
+
+    Smx(j)=-mz.*Sy(j)+my.*Sz(j);
+    Smy(j)=-mx.*Sz(j)+mz.*Sx(j);
+    Smz(j)=-my.*Sx(j)+mx.*Sy(j);
+
     %Calculate the second spin for Heuns method iteration
     Sx2=Sx(j)+dSx1;
     Sy2=Sy(j)+dSy1;
@@ -99,6 +112,5 @@ for j=1:length(t)
     normalizingspin
 end
 
-%Converting time and currents units
-timetotempunits
+%Converting currents units
 currentSIconvert

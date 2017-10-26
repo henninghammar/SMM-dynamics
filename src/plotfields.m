@@ -80,15 +80,15 @@ ylabel(axisvariable)
 colormap morgenstemning
 colorbar
 saveas(h33,strcat(outfolder,'ejxcontour'),'fig');
-%
-% h34=figure(34);
-% contourf(t, values, mxmatrix,100,'Linestyle','none')
-% title('mx')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h34,strcat(outfolder,'mxcontour'),'fig');
+
+h34=figure(34);
+contourf(t, values, mxmatrix,100,'Linestyle','none')
+title('mx')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h34,strcat(outfolder,'mxcontour'),'fig');
 
 h3=figure(3);
 contourf(t, values, jHxmatrix,100,'Linestyle','none')
@@ -99,14 +99,14 @@ colormap morgenstemning
 colorbar
 saveas(h3,strcat(outfolder,'SjHxcontour'),'fig');
 
-% h4=figure(4);
-% contourf(t, values, jIxmatrix,100,'Linestyle','none')
-% title('SIx')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h4,strcat(outfolder,'SIxcontour'),'fig');
+h4=figure(4);
+contourf(t, values, jIxmatrix,100,'Linestyle','none')
+title('SIx')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h4,strcat(outfolder,'SIxcontour'),'fig');
 
 h5=figure(5);
 contourf(t, values, jDMxmatrix,100,'Linestyle','none')
@@ -134,15 +134,15 @@ ylabel(axisvariable)
 colormap morgenstemning
 colorbar
 saveas(h46,strcat(outfolder,'ejycontour'),'fig');
-%
-% h47=figure(47);
-% contourf(t, values, mymatrix,100,'Linestyle','none')
-% title('my')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h47,strcat(outfolder,'mycontour'),'fig');
+
+h47=figure(47);
+contourf(t, values, mymatrix,100,'Linestyle','none')
+title('my')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h47,strcat(outfolder,'mycontour'),'fig');
 
 h43=figure(43);
 contourf(t, values, jHymatrix,100,'Linestyle','none')
@@ -153,14 +153,14 @@ colormap morgenstemning
 colorbar
 saveas(h43,strcat(outfolder,'SjHycontour'),'fig');
 
-% h44=figure(44);
-% contourf(t, values, jIymatrix,100,'Linestyle','none')
-% title('SIy')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h44,strcat(outfolder,'SIycontour'),'fig');
+h44=figure(44);
+contourf(t, values, jIymatrix,100,'Linestyle','none')
+title('SIy')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h44,strcat(outfolder,'SIycontour'),'fig');
 
 h45=figure(45);
 contourf(t, values, jDMymatrix,100,'Linestyle','none')
@@ -188,15 +188,15 @@ ylabel(axisvariable)
 colormap morgenstemning
 colorbar
 saveas(h56,strcat(outfolder,'ejzcontour'),'fig');
-%
-% h57=figure(57);
-% contourf(t, values, mzmatrix,100,'Linestyle','none')
-% title('mz')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h57,strcat(outfolder,'mzcontour'),'fig');
+
+h57=figure(57);
+contourf(t, values, mzmatrix,100,'Linestyle','none')
+title('mz')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h57,strcat(outfolder,'mzcontour'),'fig');
 
 h53=figure(53);
 contourf(t, values, jHzmatrix,100,'Linestyle','none')
@@ -206,15 +206,15 @@ ylabel(axisvariable)
 colormap morgenstemning
 colorbar
 saveas(h53,strcat(outfolder,'SjHzcontour'),'fig');
-%
-% h54=figure(54);
-% contourf(t, values, jIzmatrix,100,'Linestyle','none')
-% title('SIz')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h54,strcat(outfolder,'SIzcontour'),'fig');
+
+h54=figure(54);
+contourf(t, values, jIzmatrix,100,'Linestyle','none')
+title('SIz')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h54,strcat(outfolder,'SIzcontour'),'fig');
 
 h55=figure(55);
 contourf(t, values, jDMzmatrix,100,'Linestyle','none')

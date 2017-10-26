@@ -1,11 +1,11 @@
-% Non-polarized single-molecule magnet solved with constant LLG parameters
+% Polarized single-molecule magnet solved with constant LLG parameters
 % ================================================
 % Author: Henning Hammar
 % ------------------
-% Calculation of the spin dynamics and current through a degenerate single-molecule magnet
+% Calculation of the spin dynamics and current through a single-molecule magnet
 % solved with constant LLG parameters.
 %
-% This file contains the logic and main calculations. Here, the non-polarized Green's function is used.
+% This file contains the logic and main calculations. Here, the full Green's function is used.
 
 %Integration values in time and energy
 t=[0:tstep:tmax];
@@ -65,7 +65,7 @@ for j=1:length(t)
         [jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jDMx, jDMy, jDMz, ejx, ejy, ejz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyz, GjDMx, GjDMy, GjDMz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, step, J, S, wL, beta);
 
         %Calculate the magnetic occupation of the QD
-        [mx, my, mz] = constantdegenerateQDmagneticoccupation(w, epsilon, g0tot, J, fermi, S);
+        [mx, my, mz] = constantQDmagneticoccupation(eps, g, g0, gS, eV, w, fermi, S, J);
 
         %Calculate the effective fields
         effectivefields

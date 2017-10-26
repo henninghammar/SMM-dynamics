@@ -7,8 +7,6 @@
 %
 % This file contains the logic and main calculations. Here, the full Green's function is used.
 
-%WARNING: The QD magnetic occupation is not programmed correctly for this system.
-
 %Integration values in time and energy
 t=[0:tstep:tmax];
 step=0.1;

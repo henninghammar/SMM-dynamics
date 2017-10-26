@@ -82,7 +82,7 @@ for j=1:length(t)
     internalfield
 
     %Calculate the magnetic occupation of the QD
-    [mx, my, mz] = degenerateQDmagneticoccupation(w, epsilon, g0tot, J, fermi, S);
+    [mx, my, mz] = degenerateQDmagneticoccupation(t(j), t0, t1, epsilon, g0tot, g0, eV, w, fermi, S, J);
 
     %Calculate the effective fields
     effectivefields
@@ -118,7 +118,7 @@ for j=1:length(t)
 
     internalfield
 
-    [mx, my, mz] = degenerateQDmagneticoccupation(w, epsilon, g0tot, J, fermi, S2);
+    [mx, my, mz] = degenerateQDmagneticoccupation(t(j), t0, t1, epsilon, g0tot, g0, eV, w, fermi, S2, J);
 
     effectivefields
 

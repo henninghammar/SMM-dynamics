@@ -32,26 +32,26 @@ SBeffz(j)=-Beffy.*Sx(j)+Beffx.*Sy(j)+trapz(tau,dSzbare1);
 
 %Dessa parametrar ber�knar ut Gilbert-d�mpningen i de olika
 %riktningarna
-dSxbarejH(:,j)=-(t(j)-tau).*jH.*(Sy(j).*dSz-Sz(j).*dSy);
-dSybarejH(:,j)=-(t(j)-tau).*jH.*(Sz(j).*dSx-Sx(j).*dSz);
-dSzbarejH(:,j)=-(t(j)-tau).*jH.*(Sx(j).*dSy-Sy(j).*dSx);
-SjHx(j)=trapz(tau,dSxbarejH(:,j));
-SjHy(j)=trapz(tau,dSybarejH(:,j));
-SjHz(j)=trapz(tau,dSzbarejH(:,j));
+dSxbarejH=-(t(j)-tau).*jH.*(Sy(j).*dSz-Sz(j).*dSy);
+dSybarejH=-(t(j)-tau).*jH.*(Sz(j).*dSx-Sx(j).*dSz);
+dSzbarejH=-(t(j)-tau).*jH.*(Sx(j).*dSy-Sy(j).*dSx);
+SjHx(j)=trapz(tau,dSxbarejH);
+SjHy(j)=trapz(tau,dSybarejH);
+SjHz(j)=trapz(tau,dSzbarejH);
 
-dSxbarejDMx(:,j)=(t(j)-tau).*(Sy(j).*(jDMx.*dSy-jDMy.*dSx)+Sz(j).*(jDMz.*dSx-jDMx.*dSz));
-dSybarejDMy(:,j)=(t(j)-tau).*(Sz(j).*(jDMy.*dSz-jDMz.*dSy)+Sx(j).*(jDMx.*dSy-jDMy.*dSx));
-dSzbarejDMz(:,j)=(t(j)-tau).*(Sx(j).*(jDMz.*dSx-jDMx.*dSz)+Sy(j).*(jDMy.*dSz-jDMz.*dSy));
-SjDMx(j)=trapz(tau,dSxbarejDMx(:,j));
-SjDMy(j)=trapz(tau,dSybarejDMy(:,j));
-SjDMz(j)=trapz(tau,dSzbarejDMz(:,j));
+dSxbarejDMx=(t(j)-tau).*(Sy(j).*(jDMx.*dSy-jDMy.*dSx)+Sz(j).*(jDMz.*dSx-jDMx.*dSz));
+dSybarejDMy=(t(j)-tau).*(Sz(j).*(jDMy.*dSz-jDMz.*dSy)+Sx(j).*(jDMx.*dSy-jDMy.*dSx));
+dSzbarejDMz=(t(j)-tau).*(Sx(j).*(jDMz.*dSx-jDMx.*dSz)+Sy(j).*(jDMy.*dSz-jDMz.*dSy));
+SjDMx(j)=trapz(tau,dSxbarejDMx);
+SjDMy(j)=trapz(tau,dSybarejDMy);
+SjDMz(j)=trapz(tau,dSzbarejDMz);
 
-dSxbarejIx(:,j)=-(t(j)-tau).*(Sy(j).*(jIzx.*dSx+jIzy.*dSy+jIzz.*dSz)-Sz(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz));
-dSybarejIy(:,j)=-(t(j)-tau).*(Sz(j).*(jIxx.*dSx+jIxy.*dSy+jIxz.*dSz)-Sx(j).*(jIzx.*dSx+jIzy.*dSy+jIzz.*dSz));
-dSzbarejIz(:,j)=-(t(j)-tau).*(Sx(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz)-Sy(j).*(jIxx.*dSx+jIxy.*dSy+jIxz.*dSz));
-SjIx(j)=trapz(tau,dSxbarejIx(:,j));
-SjIy(j)=trapz(tau,dSybarejIy(:,j));
-SjIz(j)=trapz(tau,dSzbarejIz(:,j));
+dSxbarejIx=-(t(j)-tau).*(Sy(j).*(jIzx.*dSx+jIzy.*dSy+jIzz.*dSz)-Sz(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz));
+dSybarejIy=-(t(j)-tau).*(Sz(j).*(jIxx.*dSx+jIxy.*dSy+jIxz.*dSz)-Sx(j).*(jIzx.*dSx+jIzy.*dSy+jIzz.*dSz));
+dSzbarejIz=-(t(j)-tau).*(Sx(j).*(jIyx.*dSx+jIyy.*dSy+jIyz.*dSz)-Sy(j).*(jIxx.*dSx+jIxy.*dSy+jIxz.*dSz));
+SjIx(j)=trapz(tau,dSxbarejIx);
+SjIy(j)=trapz(tau,dSybarejIy);
+SjIz(j)=trapz(tau,dSzbarejIz);
 
 %The fields acting on the spin
 ejxvect(j)=ejx;
@@ -65,34 +65,6 @@ mzvect(j)=mz;
 Beffxvect(j)=Beffx;
 Beffyvect(j)=Beffy;
 Beffzvect(j)=Beffz;
-
-barejHfield(:,j)=jH;
-jHfield(j)=trapz(tau,barejHfield(:,j));
-
-barejIfieldx(:,j)=jIxx.*dSx+jIxy.*dSy+jIxz.*dSz;
-barejIfieldy(:,j)=jIyx.*dSx+jIyy.*dSy+jIyz.*dSz;
-barejIfieldz(:,j)=jIzx.*dSx+jIzy.*dSy+jIzz.*dSz;
-jIfieldx(j)=trapz(tau,barejIfieldx(:,j));
-jIfieldy(j)=trapz(tau,barejIfieldy(:,j));
-jIfieldz(j)=trapz(tau,barejIfieldz(:,j));
-
-barejDMfieldx(:,j)=jDMz.*dSy-jDMy.*dSz;
-barejDMfieldy(:,j)=jDMx.*dSz-jDMz.*dSx;
-barejDMfieldz(:,j)=jDMy.*dSx-jDMx.*dSy;
-jDMfieldx(j)=trapz(tau,barejDMfieldx(:,j));
-jDMfieldy(j)=trapz(tau,barejDMfieldy(:,j));
-jDMfieldz(j)=trapz(tau,barejDMfieldz(:,j));
-
-jHtot(:,j)=jH;
-jDMxtot(:,j)=jDMx;
-jDMytot(:,j)=jDMy;
-jDMztot(:,j)=jDMz;
-jIxxtot(:,j)=jIxx;
-jIyytot(:,j)=jIyy;
-jIzztot(:,j)=jIzz;
-jIxytot(:,j)=jIxy;
-jIxztot(:,j)=jIxz;
-jIyztot(:,j)=jIyz;
 
 jHt(j)=trapz(tau,jH);
 jDMxt(j)=trapz(tau,jDMx);

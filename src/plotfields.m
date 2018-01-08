@@ -21,9 +21,9 @@ for loopen=1:length(values)
     jHzmatrix(loopen,:)=real(SjHz);
     jDMzmatrix(loopen,:)=real(SjDMz);
     jIzmatrix(loopen,:)=real(SjIz);
-    Btotalx(loopen,:) = real(SjHx)+real(SjDMx)+real(SjIx)+real(SBx);
-    Btotaly(loopen,:) = real(SjHy)+real(SjDMy)+real(SjIy)+real(SBy);
-    Btotalz(loopen,:) = real(SjHz)+real(SjDMz)+real(SjIz)+real(SBz);
+    Btotalx(loopen,:) = real(SjHx)+real(SjDMx)+real(SjIx)+real(SBx)+real(Smx);
+    Btotaly(loopen,:) = real(SjHy)+real(SjDMy)+real(SjIy)+real(SBy)+real(Smy);
+    Btotalz(loopen,:) = real(SjHz)+real(SjDMz)+real(SjIz)+real(SBz)+real(Smz);
 
     jHmatrix(loopen,:)=real(jHt);
 

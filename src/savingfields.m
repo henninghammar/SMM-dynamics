@@ -35,25 +35,12 @@ SjIy(j)=trapz(tau,dSybarejIy);
 SjIz(j)=trapz(tau,dSzbarejIz);
 
 %The fields acting on the spin
-ejxvect(j)=ejx;
-ejyvect(j)=ejy;
-ejzvect(j)=ejz;
+ejvect(:,j)=[ejx, ejy, ejz];
 
-mxvect(j)=mx;
-myvect(j)=my;
-mzvect(j)=mz;
+mvect(:,j)=[mx, my, mz];
 
-Beffxvect(j)=Beffx;
-Beffyvect(j)=Beffy;
-Beffzvect(j)=Beffz;
+Beffvect(:,j)=[Beffx, Beffy, Beffz];
 
 jHt(j)=trapz(tau,jH);
-jDMxt(j)=trapz(tau,jDMx);
-jDMyt(j)=trapz(tau,jDMy);
-jDMzt(j)=trapz(tau,jDMz);
-jIxxt(j)=trapz(tau,jIxx);
-jIyyt(j)=trapz(tau,jIyy);
-jIzzt(j)=trapz(tau,jIzz);
-jIxyt(j)=trapz(tau,jIxy);
-jIxzt(j)=trapz(tau,jIxz);
-jIyzt(j)=trapz(tau,jIyz);
+jDMvect(:,j)=[trapz(tau,jDMx), trapz(tau,jDMy), trapz(tau,jDMz)];
+jIvect(:,j)=[trapz(tau,jIxx), trapz(tau,jIyy), trapz(tau,jIzz), trapz(tau,jIxy), trapz(tau,jIxz), trapz(tau,jIyz)]

@@ -25,18 +25,30 @@
 % title('Interactions z')
 % legend
 
-%jHt(j)=trapz(tau,jH);
-%jIvect(:,j)=[trapz(tau,jIxx), trapz(tau,jIyy), trapz(tau,jIzz), trapz(tau,jIxy), trapz(tau,jIxz), trapz(tau,jIyz)]
-
-titles = ['ej', 'mv', 'Beff', 'jDM'];
+titles = {'ej', 'mv', 'Beff', 'jDM'};
 plot_data = [ejvect; mvect; Beffvect; jDMvect];
 
-for i = 1:3
-h(i)=figure(i);
+for i = 1:4
+h(i)=figure;
 hold on
 plot(real(plot_data(i+1,:)))
 plot(real(plot_data(i+2,:)))
 plot(real(plot_data(i+3,:)))
 title(titles(i))
-legend
 end
+
+i = i+1;
+h(i) = figure;
+plot(real(jHt))
+title('jH')
+
+i = i+1;
+h(i)=figure;
+hold on
+plot(real(jIvect(1,:)))
+plot(real(jIvect(2,:)))
+plot(real(jIvect(3,:)))
+plot(real(jIvect(4,:)))
+plot(real(jIvect(5,:)))
+plot(real(jIvect(6,:)))
+title('jI')

@@ -33,7 +33,6 @@ eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
-tscale=1;
 tmax=10;
 tstep=0.1;
 tstep2=0.1/gamma;

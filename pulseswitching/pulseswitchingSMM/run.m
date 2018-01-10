@@ -24,7 +24,7 @@ eV(2)=-gamma; %bias voltage on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
 B=1; %Magnetic field in Tesla
-J0=0.1*gamma; %Coupling strength
+J0=1.2*gamma; %Coupling strength
 Sz0=cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
@@ -34,7 +34,7 @@ eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
 tmax=10;
-tstep=0.1;
+tstep=0.05;
 tstep2=0.1/gamma;
 tback=200*gamma;
 t0=0;%50*tstep;
@@ -44,7 +44,7 @@ kB=8.617324*10^-2; %Boltzmanns constant, in meV*K^-1
 T(1)=1; %Temperature in K
 T(2)=1;
 
-main
+mainOld
 
 toc
 %
@@ -58,5 +58,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/test1.mat', outputFolder);
+outputFilename = sprintf('%s/test2.mat', outputFolder);
 save(outputFilename)

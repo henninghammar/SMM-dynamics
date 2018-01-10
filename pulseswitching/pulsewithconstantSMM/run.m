@@ -38,7 +38,7 @@ tstep=0.1;
 tstep2=0.1/gamma;
 tback=200*gamma;
 t0=0;%50*tstep;
-t1=3;
+t1=100;
 
 kB=8.617324*10^-2; %Boltzmanns constant, in meV*K^-1
 T(1)=1; %Temperature in K
@@ -58,5 +58,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/test5.mat', outputFolder);
+outputFilename = sprintf('%s/test8.mat', outputFolder);
 save(outputFilename)

@@ -58,5 +58,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/test26.mat', outputFolder);
+outputFilename = sprintf('%s/test1.mat', outputFolder);
 save(outputFilename)

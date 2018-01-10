@@ -1,11 +1,15 @@
-function [dSx, dSy, dSz] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, ST, tau)
+function [dSx, dSy, dSz] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, SxT, SyT, SzT, tau)
 
-dSxbare=jH.*(S(2).*ST(3)-S(3).*ST(2))+S(2).*(jIzx.*ST(1)+jIzy.*ST(2)+jIzz.*ST(3))-S(3).*(jIyx.*ST(1)+jIyy.*ST(2)+jIyz.*ST(3))-S(2).*(jDMx.*ST(2)-jDMy.*ST(1))+S(3).*(jDMz.*ST(1)-jDMx.*ST(3));
-dSybare=jH.*(S(3).*ST(1)-S(1).*ST(3))+S(3).*(jIxx.*ST(1)+jIxy.*ST(2)+jIxz.*ST(3))-S(1).*(jIzx.*ST(1)+jIzy.*ST(2)+jIzz.*ST(3))-S(3).*(jDMy.*ST(3)-jDMz.*ST(2))+S(1).*(jDMx.*ST(2)-jDMy.*ST(1));
-dSzbare=jH.*(S(1).*ST(2)-S(2).*ST(1))+S(1).*(jIyx.*ST(1)+jIyy.*ST(2)+jIyz.*ST(3))-S(2).*(jIxx.*ST(1)+jIxy.*ST(2)+jIxz.*ST(3))-S(1).*(jDMz.*ST(1)-jDMx.*ST(3))+S(2).*(jDMy.*ST(3)-jDMz.*ST(2));
+Sx = S(1);
+Sy = S(2);
+Sz = S(3);
 
-dSx=-Beffz.*S(2)+Beffy.*S(3)+trapz(tau,dSxbare);
-dSy=-Beffx.*S(3)+Beffz.*S(1)+trapz(tau,dSybare);
-dSz=-Beffy.*S(1)+Beffx.*S(2)+trapz(tau,dSzbare);
+dSxbare=jH.*(Sy.*SzT-Sz.*SyT)+Sy.*(jIzx.*SxT+jIzy.*SyT+jIzz.*SzT)-Sz.*(jIyx.*SxT+jIyy.*SyT+jIyz.*SzT)-Sy.*(jDMx.*SyT-jDMy.*SxT)+Sz.*(jDMz.*SxT-jDMx.*SzT);
+dSybare=jH.*(Sz.*SxT-Sx.*SzT)+Sz.*(jIxx.*SxT+jIxy.*SyT+jIxz.*SzT)-Sx.*(jIzx.*SxT+jIzy.*SyT+jIzz.*SzT)-Sz.*(jDMy.*SzT-jDMz.*SyT)+Sx.*(jDMx.*SyT-jDMy.*SxT);
+dSzbare=jH.*(Sx.*SyT-Sy.*SxT)+Sx.*(jIyx.*SxT+jIyy.*SyT+jIyz.*SzT)-Sy.*(jIxx.*SxT+jIxy.*SyT+jIxz.*SzT)-Sx.*(jDMz.*SxT-jDMx.*SzT)+Sy.*(jDMy.*SzT-jDMz.*SyT);
+
+dSx=-Beffz.*Sy+Beffy.*Sz+trapz(tau,dSxbare);
+dSy=-Beffx.*Sz+Beffz.*Sx+trapz(tau,dSybare);
+dSz=-Beffy.*Sx+Beffx.*Sy+trapz(tau,dSzbare);
 
 end

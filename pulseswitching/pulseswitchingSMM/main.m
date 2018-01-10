@@ -65,7 +65,6 @@ for j=1:length(t)
 
     %Initiate first spin in Heuns method
     S = [Sx(j), Sy(j), Sz(j)];
-    ST = [SxT, SyT, SzT];
 
     for i=1:tback+1
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
@@ -94,7 +93,7 @@ for j=1:length(t)
     effectivefields
 
     %Spin equation of motion
-    [dSx1, dSy1, dSz1] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, ST, tau);
+    [dSx1, dSy1, dSz1] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, SxT, SyT, SzT, tau);
 
     %Saving the fields to plot
     savingfields
@@ -107,7 +106,6 @@ for j=1:length(t)
     SyT2=[SyT(2:end),Sy2];
     SzT2=[SzT(2:end),Sz2];
     S2 = [Sx2, Sy2, Sz2];
-    ST2 = [SxT2, SyT2, SzT2];
 
     %Second step in Heuns method iteration
     for i=1:tback+1
@@ -116,7 +114,7 @@ for j=1:length(t)
         [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
 
         %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
-        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
 
         %Calculate self-energy K
         selfenergyK
@@ -132,7 +130,7 @@ for j=1:length(t)
     effectivefields
 
     %Spin equation of motion
-    [dSx2, dSy2, dSz2] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S2, ST2, tau);
+    [dSx2, dSy2, dSz2] = spinequationofmotion(Beffx, Beffy, Beffz,jH,jDMx,jDMy,jDMz,jIxx,jIyy,jIzz,jIxy,jIyx,jIxz,jIzx,jIyz,jIzy, S, SxT2, SyT2, SzT2, tau);
 
     %Calculate final spin and normalize it
     normalizingspin

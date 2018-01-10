@@ -551,6 +551,9 @@ for j=1:length(t)
     Beffy=ejy;
     Beffz=(wL+ejz);
 
+    %The fields acting on the spin
+    ejvect(:,j)=[ejx, ejy, ejz];
+    
     Beffvect(:,j)=[Beffx, Beffy, Beffz];
 
     jHt(j)=trapz(tau,jH);
@@ -563,7 +566,7 @@ for j=1:length(t)
     SxT2=[SxT(2:end),Sx2];
     SyT2=[SyT(2:end),Sy2];
     SzT2=[SzT(2:end),Sz2];
-    
+
     for i=1:tback+1
 
         for k=1:2

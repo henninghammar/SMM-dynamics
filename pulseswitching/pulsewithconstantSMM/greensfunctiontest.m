@@ -49,6 +49,8 @@ polarizedgamma
 %Defining fermi-functions
 fermifunction
 
+g = 2*g;
+
 %Initiating some variables for speed
 %initiatingvariables
 
@@ -61,5 +63,5 @@ end
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/test6.mat', outputFolder);
+outputFilename = sprintf('%s/test11.mat', outputFolder);
 %save(outputFilename)

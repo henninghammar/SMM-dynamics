@@ -71,19 +71,12 @@ for j=1:length(t)
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
         [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
 
+        %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+
         %Calculate self-energy K
         selfenergyK
     end
-
-    %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
-    G0less2 = -G0less;
-    G0great2 = -G0great;
-    G1xless2 = -G1xless;
-    G1xgreat2 = -G1xgreat;
-    G1yless2 = -G1yless;
-    G1ygreat2 = -G1ygreat;
-    G1zless2 = -G1zless;
-    G1zgreat2 = -G1zgreat;
 
     %Calculate charge and spin currents by integration over tau
     currents
@@ -122,20 +115,13 @@ for j=1:length(t)
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
         [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
 
+        %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+
         %Calculate self-energy K
         selfenergyK
 
     end
-
-    %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
-    G0less2 = -G0less;
-    G0great2 = -G0great;
-    G1xless2 = -G1xless;
-    G1xgreat2 = -G1xgreat;
-    G1yless2 = -G1yless;
-    G1ygreat2 = -G1ygreat;
-    G1zless2 = -G1zless;
-    G1zgreat2 = -G1zgreat;
 
     exchangeinteraction
 

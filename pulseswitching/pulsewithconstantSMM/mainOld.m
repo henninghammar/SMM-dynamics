@@ -29,6 +29,9 @@ fermifunction
 %Initiating some variables for speed
 initiatingvariables
 
+%Double gamma as in old code
+g = g*2;
+
 %First loop over each timestep in t.
 for j=1:length(t)
 
@@ -71,18 +74,14 @@ for j=1:length(t)
     %Calculate the internal field given the Green's functions
     internalfield
 
-    %Calculate the magnetic occupation of the QD
-    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
-
-    %Calculate the effective fields
-    effectivefields
+    Beffx = ejx;
+    Beffy = ejy;
+    Beffz = wL + ejz;
 
     %Saving the fields to plot
     %savingfields
     %The fields acting on the spin
     ejvect(:,j)=[ejx, ejy, ejz];
-
-    mvect(:,j)=[mx, my, mz];
 
     Beffvect(:,j)=[Beffx, Beffy, Beffz];
 

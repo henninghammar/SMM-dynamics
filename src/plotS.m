@@ -25,10 +25,13 @@
 % title('Interactions z')
 % legend
 
-titles = {'ej', 'mv', 'Beff', 'jDM'};
-plot_data = [ejvect; mvect; Beffvect; jDMvect];
+%titles = {'ej', 'mv', 'Beff', 'jDM'};
+%plot_data = [ejvect; mvect; Beffvect; jDMvect];
 
-for i = 1:4
+titles = {'ej', 'Beff', 'jDM'};
+plot_data = [ejvect; Beffvect; jDMvect];
+
+for i = 1:3
 h(i)=figure;
 hold on
 plot(real(plot_data(i+1,:)))

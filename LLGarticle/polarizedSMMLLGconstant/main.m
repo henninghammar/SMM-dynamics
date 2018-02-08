@@ -62,10 +62,10 @@ for j=1:length(t)
 
     %Calculate the interactionparameters for the first timestep
     if j == 1
-        [jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jDMx, jDMy, jDMz, ejx, ejy, ejz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyz, GjDMx, GjDMy, GjDMz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, step, J, S, wL, beta);
+        [jH, jIxx, jIyy, jIzz, jIxy, jIxz, jIyz, jDMx, jDMy, jDMz, ejx, ejy, ejz, GjH, GjIxx, GjIyy, GjIzz, GjIxy, GjIxz, GjIyz, GjDMx, GjDMy, GjDMz] = interactionparameters(pL, pR, gamma, mu, eps, epsilon, w, step, J, S, wL, beta);
 
         %Calculate the magnetic occupation of the QD
-        [mx, my, mz] = constantQDmagneticoccupation(eps, g, g0, gS, eV, w, fermi, S, J);
+        [mx, my, mz] = constantQDmagneticoccupation(eps, g, g0, gS, w, fermi, S, J);
 
         %Calculate the effective fields
         effectivefields

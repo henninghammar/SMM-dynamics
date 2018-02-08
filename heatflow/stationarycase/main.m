@@ -14,8 +14,9 @@ tic
 pL=0; %Polarization of gamma_up and gamma_down
 pR=0;
 gamma=1;
-eV(1)=gamma/2; %bias voltage on left lead
-eV(2)=-gamma/2; %bias voltage on right lead
+eV = gamma; %bias voltage
+mu(1)=eV/2; %chemical potential on left lead
+mu(2)=-eV/2; %chemical potential on right lead
 J=1;%0.5*gamma; %Coupling strength
 
 gfactor=2; %g-factor
@@ -39,24 +40,24 @@ w=[-20:dw:20];
 
 eVvector = [-10:0.1:10]./gamma;
 for i = 1:length(eVvector)
-  eVnew(1) = eVvector(i)/2;
-  eVnew(2) = -eVvector(i)/2;
-  [Icbias(i), Isxbias(i), Isybias(i), Iszbias(i), Iebias(i), Iqbias(i), DOSbias(i,:), MDOSzbias(i,:)] = stationarycurrent(pL, pR, gamma, eVnew, eps, epsilon, w, dw, J, S, wL, beta);
-  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, dw, J, S, wL, beta);
+  munew(1) = eVvector(i)/2;
+  munew(2) = -eVvector(i)/2;
+  [Icbias(i), Isxbias(i), Isybias(i), Iszbias(i), Iebias(i), Iqbias(i), DOSbias(i,:), MDOSzbias(i,:)] = stationarycurrent(pL, pR, gamma, munew, eps, epsilon, w, dw, J, S, wL, beta);
+  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta);
 end
 
 epsvector = [-10:0.1:10]./gamma;
 for i = 1:length(epsvector)
   epsnew(1)=epsvector(i)+0.5*wL;
   epsnew(2)=epsvector(i)-0.5*wL;
-  [Icgate(i), Isxgate(i), Isygate(i), Iszgate(i), Iegate(i), Iqgate(i), DOSgate(i,:), MDOSzgate(i,:)] = stationarycurrent(pL, pR, gamma, eV, epsnew, epsilon, w, dw, J, S, wL, beta);
-  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, dw, J, S, wL, beta);
+  [Icgate(i), Isxgate(i), Isygate(i), Iszgate(i), Iegate(i), Iqgate(i), DOSgate(i,:), MDOSzgate(i,:)] = stationarycurrent(pL, pR, gamma, mu, epsnew, epsilon, w, dw, J, S, wL, beta);
+  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta);
 end
 
 Jvector = [0:0.1:10]./gamma;
 for i = 1:length(Jvector)
-  [IcJ(i), IsxJ(i), IsyJ(i), IszJ(i), IeJ(i), IqJ(i), DOSJ(i,:), MDOSzJ(i,:)] = stationarycurrent(pL, pR, gamma, eV, eps, epsilon, w, dw, Jvector(i), S, wL, beta);
-  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, dw, J, S, wL, beta);
+  [IcJ(i), IsxJ(i), IsyJ(i), IszJ(i), IeJ(i), IqJ(i), DOSJ(i,:), MDOSzJ(i,:)] = stationarycurrent(pL, pR, gamma, mu, eps, epsilon, w, dw, Jvector(i), S, wL, beta);
+  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta);
 end
 
 tempvector = [1:0.1:10];
@@ -65,8 +66,8 @@ for i = 1:length(tempvector)
   Tnew(2)=tempvector(i);
   betanew(1)=1/(kB*Tnew(1));
   betanew(2)=1/(kB*Tnew(2));
-  [Ictemp(i), Isxtemp(i), Isytemp(i), Isztemp(i), Ietemp(i), Iqtemp(i), DOStemp(i,:), MDOSztemp(i,:)] = stationarycurrent(pL, pR, gamma, eV, eps, epsilon, w, dw, J, S, wL, betanew);
-  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, eV, eps, epsilon, w, dw, J, S, wL, beta);
+  [Ictemp(i), Isxtemp(i), Isytemp(i), Isztemp(i), Ietemp(i), Iqtemp(i), DOStemp(i,:), MDOSztemp(i,:)] = stationarycurrent(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, betanew);
+  %[JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta);
 end
 
 toc

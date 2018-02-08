@@ -1,4 +1,4 @@
-function [Ic, Isx, Isy, Isz, Ie, Iq, DOS, MDOSz] = stationarycurrent(pL, pR, gamma, eV, eps, epsilon, w, dw, J, S, wL, beta)
+function [Ic, Isx, Isy, Isz, Ie, Iq, DOS, MDOSz] = stationarycurrent(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta)
     stationarygreensfunction
 
     self0less = 1i*g0L*fermiL;
@@ -38,7 +38,7 @@ function [Ic, Isx, Isy, Isz, Ie, Iq, DOS, MDOSz] = stationarycurrent(pL, pR, gam
     Ie = Ie0 + Ie1;
 
     %Heat current
-    Iq = Ie - eV(1)*Ic;
+    Iq = Ie - mu(1)*Ic;
 
     %In SI units
     %Iconv=1.602176565*10^(-19)/(6.58211928*10^(-16))*10^-3;%in A, elementary charge divided by hbar in eVs times 10^-3 as we use meV

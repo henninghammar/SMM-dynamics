@@ -1,4 +1,4 @@
-function [mx, my, mz] = constantQDmagneticoccupation(eps, gamma, gamma0, gammaS, eV, w, fermi, S, J)
+function [mx, my, mz] = constantQDmagneticoccupation(eps, gamma, gamma0, gammaS, w, fermi, S, J)
 
 %Calculate the field due to the local QD magnetization for polarized QD
 g0ret = 0.5*(1./(w-eps(1)+1i*gamma(1)/2) + 1./(w-eps(1)+1i*gamma(1)/2));

@@ -19,8 +19,9 @@ pR=0;
 gamma=0.5;
 g0(1)=gamma;
 g0(2)=gamma;
-eV(1)=gamma; %bias voltage on left lead
-eV(2)=-gamma; %bias voltage on right lead
+eV = gamma; %bias voltage
+mu(1)=eV/2; %chemical potential on left lead
+mu(2)=-eV/2; %chemical potential on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
 B=1; %Magnetic field in Tesla
@@ -48,11 +49,11 @@ T(2)=1;
 main
 
 toc
-% 
+%
 % clear G0less G0great G1xless G1xgreat G1yless G1ygreat G1zless G1zgreat G0less2 G0great2 G1xless2 G1xgreat2 G1yless2 G1ygreat2 G1zless2 G1zgreat2 Kless Kgreat
 % clear G0greattot   G1xgreattot   G1ygreattot  G1zgreattot   G0greattot2   G1xgreattot2    G1ygreattot2    G1zgreattot2
 % clear G0greattotAlt    G1xgreattotAlt    G1ygreattotAlt    G1zgreattotAlt
-% 
+%
 % clear dSxbarejH dSybarejH dSzbarejH dSxbarejDMx dSybarejDMy dSzbarejDMz dSxbarejIx dSybarejIy dSzbarejIz
 % clear jHtot jDMxtot jDMytot jDMztot jIxxtot jIyytot jIzztot jIxytot jIxztot jIyztot
 % clear    barejDMfieldx    barejDMfieldy    barejDMfieldz    barejHfield barejIfieldx barejIfieldy barejIfieldz

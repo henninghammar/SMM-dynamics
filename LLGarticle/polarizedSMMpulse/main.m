@@ -68,10 +68,10 @@ for j=1:length(t)
 
     for i=1:tback+1
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
-        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
 
         %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
-        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
 
         %Calculate self-energy K
         selfenergyK
@@ -87,7 +87,7 @@ for j=1:length(t)
     internalfield
 
     %Calculate the magnetic occupation of the QD
-    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S, J);
+    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
 
     %Calculate the effective fields
     effectivefields
@@ -111,10 +111,10 @@ for j=1:length(t)
     for i=1:tback+1
 
         %Green's function of (t,tau) for each timestep tau with integration over energies w/omega
-        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+        [G0less(i), G0great(i), G1xless(i), G1xgreat(i), G1yless(i), G1ygreat(i), G1zless(i), G1zgreat(i)] = greensfunction(t(j), tau(i), t0, t1, eps, g, g0, gS, mu, w, fermi, S2, J);
 
         %Green's function of (tau, t) for each timestep tau with integration over energies w/omega
-        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+        [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S2, J);
 
         %Calculate self-energy K
         selfenergyK
@@ -125,7 +125,7 @@ for j=1:length(t)
 
     internalfield
 
-    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, eV, w, fermi, S2, J);
+    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S2, J);
 
     effectivefields
 

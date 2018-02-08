@@ -18,8 +18,9 @@ pR=0;
 gamma=1;
 g0(1)=gamma;
 g0(2)=gamma;
-eV(1)=gamma; %bias voltage on left lead
-eV(2)=-gamma; %bias voltage on right lead
+eV = gamma; %bias voltage
+mu(1)=eV/2; %chemical potential on left lead
+mu(2)=-eV/2; %chemical potential on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
 B=1; %Magnetic field in Tesla
@@ -57,5 +58,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/test16.mat', outputFolder);
+outputFilename = sprintf('%s/runX.mat', outputFolder);
 save(outputFilename)

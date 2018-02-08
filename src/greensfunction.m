@@ -1,4 +1,4 @@
-function [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = greensfunction(t, tau, t0, t1, eps, gamma, gamma0, gammaS, eV, w, fermi, S, J)
+function [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = greensfunction(t, tau, t0, t1, eps, gamma, gamma0, gammaS, mu, w, fermi, S, J)
 
 %Defining some variables for speed
 A=zeros(2,length(w));
@@ -44,23 +44,23 @@ for k=1:2
         if tau < t0
                 A(m,:) = -(1./2).*(exp(-1i.*w.*tau)./(w-eps(m)+1i.*gamma(m)/2));
         elseif tau < t1
-                A(m,:) = -(1./2).*(exp(-1i.*(eps(m)-1i.*gamma(m)/2).*(tau-t0)-1i.*w.*t0).*(1./(w-eps(m)+1i.*gamma(m)/2)-1./(w+eV(k)-eps(m)+1i*gamma(m)/2))...
-                +exp(-1i.*eV(k).*(tau-t0)-1i.*w.*tau)./(w+eV(k)-eps(m)+1i*gamma(m)/2));
+                A(m,:) = -(1./2).*(exp(-1i.*(eps(m)-1i.*gamma(m)/2).*(tau-t0)-1i.*w.*t0).*(1./(w-eps(m)+1i.*gamma(m)/2)-1./(w+mu(k)-eps(m)+1i*gamma(m)/2))...
+                +exp(-1i.*mu(k).*(tau-t0)-1i.*w.*tau)./(w+mu(k)-eps(m)+1i*gamma(m)/2));
         else
                 A(m,:) = -(1./2).*(exp(-1i.*(eps(m)-1i.*gamma(m)/2).*(tau)).*(1./(w-eps(m)+1i.*gamma(m)/2).*(...
                 exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t0)+exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*tau)-exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t1))...
-                +1./(w+eV(k)-eps(m)+1i*gamma(m)/2).*(exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t1-1i.*eV(k).*(t1-t0))-exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t0))));
+                +1./(w+mu(k)-eps(m)+1i*gamma(m)/2).*(exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t1-1i.*mu(k).*(t1-t0))-exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t0))));
         end
 
         if t < t0
                 B(m,:) = -(1./2).*(exp(1i.*w.*t)./(w-eps(m)-1i.*gamma(m)/2));
         elseif t < t1
-                B(m,:) = -(1./2).*(exp(-1i.*(eps(m)+1i.*gamma(m)/2).*(t0-t)+1i.*w.*t0).*(1./(w-eps(m)-1i.*gamma(m)/2)-1./(w+eV(k)-eps(m)-1i*gamma(m)/2))...
-                +exp(1i.*eV(k).*(t-t0)+1i.*w.*t)./(w+eV(k)-eps(m)-1i*gamma(m)/2));
+                B(m,:) = -(1./2).*(exp(-1i.*(eps(m)+1i.*gamma(m)/2).*(t0-t)+1i.*w.*t0).*(1./(w-eps(m)-1i.*gamma(m)/2)-1./(w+mu(k)-eps(m)-1i*gamma(m)/2))...
+                +exp(1i.*mu(k).*(t-t0)+1i.*w.*t)./(w+mu(k)-eps(m)-1i*gamma(m)/2));
         else
                 B(m,:) = -(1./2).*(exp(1i.*(eps(m)+1i.*gamma(m)/2).*(t)).*(1./(w-eps(m)-1i.*gamma(m)/2).*(...
                 exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t0)+exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t)-exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t1))...
-                +1./(w+eV(k)-eps(m)-1i*gamma(m)/2).*(exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t1+1i.*eV(k).*(t1-t0))-exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t0))));
+                +1./(w+mu(k)-eps(m)-1i*gamma(m)/2).*(exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t1+1i.*mu(k).*(t1-t0))-exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t0))));
         end
 
         for l=1:2
@@ -69,22 +69,22 @@ for k=1:2
                     C(m,l,:)=(1./4).*exp(-1i.*w.*tau)./((w-eps(m)+1i*gamma(m)/2).*(w-eps(l)+1i*gamma(l)/2));
             elseif tau < t1
                     C(m,l,:)=(1./4).*(exp(-1i.*w.*t0-1i.*(eps(m)-1i.*gamma(m)/2).*(tau-t0))./((w-eps(m)+1i*gamma(m)/2).*(w-eps(l)+1i*gamma(l)/2))...
-                    +(exp(-1i.*w.*tau-1i.*eV(k).*(tau-t0))-exp(-1i.*w.*t0-1i.*(eps(m)-1i.*gamma(m)/2).*(tau-t0)))./((w+eV(k)-eps(m)+1i*gamma(m)/2).*(w+eV(k)-eps(l)+1i*gamma(l)/2)));
+                    +(exp(-1i.*w.*tau-1i.*mu(k).*(tau-t0))-exp(-1i.*w.*t0-1i.*(eps(m)-1i.*gamma(m)/2).*(tau-t0)))./((w+mu(k)-eps(m)+1i*gamma(m)/2).*(w+mu(k)-eps(l)+1i*gamma(l)/2)));
             else
                     C(m,l,:) = (1./4).*(exp(-1i.*(eps(m)-1i.*gamma(m)/2).*(tau)).*(1./((w-eps(m)+1i*gamma(m)/2).*(w-eps(l)+1i*gamma(l)/2)).*(...
                     exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t0)+exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*tau)-exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t1))...
-                    +1./((w+eV(k)-eps(m)+1i*gamma(m)/2).*(w+eV(k)-eps(l)+1i*gamma(l)/2)).*(exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t1-1i.*eV(k).*(t1-t0))-exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t0))));
+                    +1./((w+mu(k)-eps(m)+1i*gamma(m)/2).*(w+mu(k)-eps(l)+1i*gamma(l)/2)).*(exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t1-1i.*mu(k).*(t1-t0))-exp(1i.*(eps(m)-1i.*gamma(m)/2-w).*t0))));
             end
 
             if t < t0
                     D(m,l,:)=(1./4).*(exp(1i.*w.*t)./((w-eps(m)-1i*gamma(m)/2).*(w-eps(l)-1i*gamma(l)/2)));
             elseif t < t1
                     D(m,l,:)=(1./4).*(exp(1i.*w.*t0-1i.*(eps(m)+1i.*gamma(m)/2).*(t0-t))./((w-eps(m)-1i*gamma(m)/2).*(w-eps(l)-1i*gamma(l)/2))...
-                    +(exp(1i.*w.*t+1i.*eV(k).*(t-t0))-exp(1i.*w.*t0-1i.*(eps(m)+1i.*gamma(m)/2).*(t0-t)))./((w+eV(k)-eps(m)-1i*gamma(m)/2).*(w+eV(k)-eps(l)-1i*gamma(l)/2)));
+                    +(exp(1i.*w.*t+1i.*mu(k).*(t-t0))-exp(1i.*w.*t0-1i.*(eps(m)+1i.*gamma(m)/2).*(t0-t)))./((w+mu(k)-eps(m)-1i*gamma(m)/2).*(w+mu(k)-eps(l)-1i*gamma(l)/2)));
             else
                     D(m,l,:) = (1./4).*(exp(1i.*(eps(m)+1i.*gamma(m)/2).*(t)).*(1./((w-eps(m)-1i*gamma(m)/2).*(w-eps(l)-1i*gamma(l)/2)).*(...
                     exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t0)+exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t)-exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t1))...
-                    +1./((w+eV(k)-eps(m)-1i*gamma(m)/2).*(w+eV(k)-eps(l)-1i*gamma(l)/2)).*(exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t1+1i.*eV(k).*(t1-t0))-exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t0))));
+                    +1./((w+mu(k)-eps(m)-1i*gamma(m)/2).*(w+mu(k)-eps(l)-1i*gamma(l)/2)).*(exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t1+1i.*mu(k).*(t1-t0))-exp(-1i.*(eps(m)+1i.*gamma(m)/2-w).*t0))));
             end
         end
     end
@@ -128,7 +128,7 @@ for k=1:2
 
     G1yless0(k,:)=-J.*(1i./(2*pi)).*fermi(k,:).*(S(2).*(E00(k,:)+F00(k,:))+1i.*S(1).*(E10(k,:)+F10(k,:))-1i.*S(1).*(E01(k,:)+F01(k,:))+1i.*S(2).*(E11(k,:)+F11(k,:)));
     G1ygreat0(k,:)=J.*(1i./(2*pi)).*(1-fermi(k,:)).*(S(2).*(E00(k,:)+F00(k,:))+1i.*S(1).*(E10(k,:)+F10(k,:))-1i.*S(1).*(E01(k,:)+F01(k,:))+1i.*S(2).*(E11(k,:)+F11(k,:)));
-    
+
     g1less0(k,:)=(1i./(2*pi)).*fermi(k,:).*(gammaS(k).*(A0(k,:).*B0(k,:)+A1(k,:).*B1(k,:))+gamma0(k).*(A0(k,:).*B1(k,:)+A1(k,:).*B0(k,:)));
     g1great0(k,:)=-(1i./(2*pi)).*(1-fermi(k,:)).*(gammaS(k).*(A0(k,:).*B0(k,:)+A1(k,:).*B1(k,:))+gamma0(k).*(A0(k,:).*B1(k,:)+A1(k,:).*B0(k,:)));
 

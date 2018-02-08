@@ -2,4 +2,4 @@
 *.mat
 *.fig
 output/
-simulations/
+simulations*/

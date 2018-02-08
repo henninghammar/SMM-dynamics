@@ -25,7 +25,7 @@ gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
 B=1; %Magnetic field in Tesla
 J0=0.5*gamma; %Coupling strength
-Sz0=cos(pi/4); %Spin z-component
+Sz0=-cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
 epsilon=0; %Energy level of the quantum dot
@@ -33,8 +33,8 @@ eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
-tmax=10;
-tstep=0.05;
+tmax=20;
+tstep=0.025;
 tstep2=0.1/gamma;
 tback=200*gamma;
 t0=0;%50*tstep;
@@ -60,5 +60,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/test10.mat', outputFolder);
+outputFilename = sprintf('%s/benchmark3.mat', outputFolder);
 save(outputFilename)

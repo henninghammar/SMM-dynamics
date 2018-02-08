@@ -1,29 +1,32 @@
 h1=figure(1);
 hold on
-plot(real(SBx),'r')
-plot(real(SjHx),'g')
-plot(real(SjDMx),'black')
-plot(real(SjIx))
+plot(t, real(Sejx),'r')
+plot(t, real(Smx))
+plot(t, real(SjHx),'g')
+plot(t, real(SjDMx),'black')
+plot(t, real(SjIx))
 title('Interactions x')
-legend
+legend('ejx', 'mx', 'jHx', 'DMx', 'Ix')
 
 h2=figure(2);
 hold on
-plot(real(SBy),'r')
-plot(real(SjHy),'g')
-plot(real(SjDMy),'black')
-plot(real(SjIy))
+plot(t, real(Sejy),'r')
+plot(t, real(Smy))
+plot(t, real(SjHy),'g')
+plot(t, real(SjDMy),'black')
+plot(t, real(SjIy))
 title('Interactions y')
-legend
+legend('ejy', 'my', 'jHy', 'DMy', 'Iy')
 
 h3=figure(3);
 hold on
-plot(real(SBz),'r')
-plot(real(SjHz),'g')
-plot(real(SjDMz),'black')
-plot(real(SjIz))
+plot(t, real(Sejz),'r')
+plot(t, real(Smz))
+plot(t, real(SjHz),'g')
+plot(t, real(SjDMz),'black')
+plot(t, real(SjIz))
 title('Interactions z')
-legend
+legend('ejz', 'mz', 'jHz', 'DMz', 'Iz')
 
 %titles = {'ej', 'mv', 'Beff', 'jDM'};
 %plot_data = [ejvect; mvect; Beffvect; jDMvect];

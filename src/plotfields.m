@@ -35,6 +35,7 @@ for loopen=1:length(values)
     DMymatrix(loopen,:)=real(jDMvect(2,:));
     DMzmatrix(loopen,:)=real(jDMvect(3,:));
 end
+values = values./pi;
 % %
 % % h1=figure(1);
 % % contourf(t, values, Btotalx,100,'Linestyle','none')
@@ -233,7 +234,7 @@ ylabel(axisvariable)
 colormap morgenstemning
 colorbar
 saveas(h33,strcat(outfolder,'mzcontour'),'fig');
-
+%
 h34=figure(34);
 contourf(t, values, jHzmatrix,100,'Linestyle','none')
 title('SjHz')
@@ -242,7 +243,7 @@ ylabel(axisvariable)
 colormap morgenstemning
 colorbar
 saveas(h34,strcat(outfolder,'SjHzcontour'),'fig');
-
+%
 h35=figure(35);
 contourf(t, values, jIzmatrix,100,'Linestyle','none')
 title('SIz')

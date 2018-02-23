@@ -1,3 +1,5 @@
+function [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, epsilon, w, J, S, wL, beta)
+
 Sx = S(1);
 Sy = S(2);
 Sz = S(3);
@@ -38,3 +40,5 @@ G1ygreat = - J.*(Sy.*(g0ret.*g0great+g0great.*g0adv)+1i*Sx.*(g1ret.*g0great+g1gr
   -1i*Sx.*(g0ret.*g1great+g0great.*g1adv)+1i.*Sy.*(g1ret.*g1great+g1great.*g1adv));
 G1zless = g1less - J*Sz.*(g0ret.*g0less+g0less.*g0adv);
 G1zgreat = g1great - J*Sz.*(g0ret.*g0great+g0great.*g0adv);
+
+end

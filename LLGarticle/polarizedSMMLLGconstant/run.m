@@ -16,7 +16,7 @@ tic
 %Initial values
 pL=0; %Polarization of gamma_up and gamma_down
 pR=0;
-gamma=1;
+gamma=0.5;
 g0(1)=gamma;
 g0(2)=gamma;
 eV = gamma; %bias voltage
@@ -25,7 +25,7 @@ mu(2)=-eV/2; %chemical potential on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
 B=1; %Magnetic field in Tesla
-J0=0.1; %Coupling strength
+J0=0.1*gamma; %Coupling strength
 Sz0=cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
@@ -35,12 +35,12 @@ eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
 tscale=1;
-tmax=5;
+tmax=50;
 tstep=0.1;
 tstep2=0.1;
-tback=100;
+tback=200;
 t0=0;%50*tstep;
-t1=3;
+t1=1000;
 
 kB=8.617324*10^-2; %Boltzmanns constant, in meV*K^-1
 T(1)=1; %Temperature in K
@@ -59,7 +59,7 @@ clear jHtot jDMxtot jDMytot jDMztot jIxxtot jIyytot jIzztot jIxytot jIxztot jIyz
 clear    barejDMfieldx    barejDMfieldy    barejDMfieldz    barejHfield barejIfieldx barejIfieldy barejIfieldz
 
 %Savedata
-%outputFolder = 'outfolder';
+outputFolder = 'outfolder';
 %outputFilename = sprintf('%s/pulsebiasnha%02d.mat', outputFolder, bias);
-%outputFilename = sprintf('%s/test7.mat', outputFolder);
-%save(outputFilename)
+outputFilename = sprintf('%s/test1.mat', outputFolder);
+save(outputFilename)

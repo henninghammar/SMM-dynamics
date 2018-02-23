@@ -1,144 +1,61 @@
 
-figure(1)
-plot(eVvector, Icbias)
-ylabel('Charge current')
-xlabel('Bias voltage (1/Gamma)')
+% labels = {'Charge current', 'Spin current (z-direction)', 'Energy current', 'Heat current'};
+% plot_bias = [Icbias; Iszbias; Iebias; Iqbias];
+% plot_gate = [Icgate; Iszgate; Iegate; Iqgate];
+% plot_J = [IcJ; IszJ; IeJ; IqJ];
+% plot_temp = [Ictemp; Isztemp; Ietemp; Iqtemp];
+% plot_data = {plot_bias; plot_gate; plot_J; plot_temp};
 
-figure(2)
-hold on
-plot(eVvector, Isxbias)
-plot(eVvector, Isybias)
-plot(eVvector, Iszbias)
-legend('Isx','Isy','Isz')
-ylabel('Spin current')
-xlabel('Bias voltage (1/Gamma)')
-
-figure(3)
-plot(eVvector, Iebias)
-ylabel('Energy current')
-xlabel('Bias voltage (1/Gamma)')
-
-figure(4)
-plot(eVvector, Iqbias)
-ylabel('Heat current')
-xlabel('Bias voltage (1/Gamma)')
+xaxis = {eVvector; epsvector; Jvector; tempvector};
+xlabels = {'Bias voltage (1/Gamma)', 'Gate voltage (1/Gamma)', 'Exchange coupling (1/Gamma)', 'Temperature T_R (K) (T_L = 1 K)'};
+% m = 0;
+% for parameter = 1:length(xlabels)
+%   for i = 1:length(labels)
+%     m = m + 1;
+%     h(m)=figure;
+%     plot_variables = plot_data{parameter};
+%     xaxis_variables = xaxis{parameter};
+%     plot(xaxis_variables, plot_variables(i,:))
+%     xlabel(xlabels(parameter))
+%     ylabel(labels(i))
+%   end
+% end
 %
-% figure(5)
-% contourf(w, eVvector, DOSbias, 100,'Linestyle','none')
-% title('Density of states')
-% ylabel('Bias voltage (1/Gamma)')
-% colorbar
-%
-% figure(6)
-% contourf(w, eVvector, MDOSzbias, 100,'Linestyle','none')
-% title('Spin density of states (z)')
-% ylabel('Bias voltage (1/Gamma)')
-% colorbar
+Heisenberg = {JHbias; JHgate; JHJ; JHtemp};
+Ising = {Isingbias; Isinggate; IsingJ; Isingtemp};
+DM = {DMbias; DMgate; DMJ; DMtemp};
+% xaxis = {eVvector; epsvector};
+% xlabels = {'Bias voltage (1/Gamma)', 'Gate voltage (1/Gamma)'};
+% Heisenberg = {JHbias; JHgate};
+% Ising = {Isingbias; Isinggate};
+%DM = {DMbias; DMgate};
+for parameter = 1:length(Heisenberg)
+  i = i+1;
+  h(i)=figure;
+  hold on
+  Heisenberg_values = Heisenberg{parameter};
+  xaxis_variables = xaxis{parameter};
+  plot(xaxis_variables, Heisenberg_values)
+  xlabel(xlabels(parameter))
+  ylabel('Heisenberg interactions')
 
-figure(10)
-plot(epsvector, Icgate)
-ylabel('Charge current')
-xlabel('Gate voltage (1/Gamma)')
+  i = i+1;
+  h(i)=figure;
+  hold on
+  Ising_values = Ising{parameter};
+  for n = 1:6
+    plot(xaxis_variables, Ising_values(n,:))
+  end
+  xlabel(xlabels(parameter))
+  ylabel('Ising interactions')
 
-figure(11)
-hold on
-plot(epsvector, Isxgate)
-plot(epsvector, Isygate)
-plot(epsvector, Iszgate)
-legend('Isx','Isy','Isz')
-ylabel('Spin current')
-xlabel('Gate voltage (1/Gamma)')
-
-figure(12)
-plot(epsvector, Iegate)
-ylabel('Energy current')
-xlabel('Gate voltage (1/Gamma)')
-
-figure(13)
-plot(epsvector, Iqgate)
-ylabel('Heat current')
-xlabel('Gate voltage (1/Gamma)')
-%
-% figure(14)
-% contourf(w, epsvector, DOSgate, 100,'Linestyle','none')
-% title('Density of states')
-% ylabel('Gate voltage (1/Gamma)')
-% colorbar
-%
-% figure(15)
-% contourf(w, epsvector, MDOSzgate, 100,'Linestyle','none')
-% title('Spin density of states (z)')
-% ylabel('Gate voltage (1/Gamma)')
-% colorbar
-
-figure(20)
-plot(Jvector, IcJ)
-ylabel('Charge current')
-xlabel('Exchange coupling (1/Gamma)')
-
-figure(21)
-hold on
-plot(Jvector, IsxJ)
-plot(Jvector, IsyJ)
-plot(Jvector, IszJ)
-legend('Isx','Isy','Isz')
-ylabel('Spin current')
-xlabel('Exchange coupling (1/Gamma)')
-
-figure(22)
-plot(Jvector, IeJ)
-ylabel('Energy current')
-xlabel('Exchange coupling (1/Gamma)')
-
-figure(23)
-plot(Jvector, IqJ)
-ylabel('Heat current')
-xlabel('Exchange coupling (1/Gamma)')
-%
-% figure(24)
-% contourf(w, Jvector, DOSJ, 100,'Linestyle','none')
-% title('Density of states')
-% ylabel('Exchange coupling (1/Gamma)')
-% colorbar
-%
-% figure(25)
-% contourf(w, Jvector, MDOSzJ, 100,'Linestyle','none')
-% title('Spin density of states (z)')
-% ylabel('Exchange coupling (1/Gamma)')
-% colorbar
-
-figure(30)
-plot(tempvector, real(Ictemp))
-ylabel('Charge current')
-xlabel('Temperature T_R (K) (T_L = 1 K)')
-
-figure(31)
-hold on
-plot(tempvector, real(Isxtemp))
-plot(tempvector, real(Isytemp))
-plot(tempvector, real(Isztemp))
-legend('Isx','Isy','Isz')
-ylabel('Spin current')
-xlabel('Temperature T_R (K) (T_L = 1 K)')
-
-figure(32)
-plot(tempvector, real(Ietemp))
-ylabel('Energy current')
-xlabel('Temperature T_R (K) (T_L = 1 K)')
-
-figure(33)
-plot(tempvector, real(Iqtemp))
-ylabel('Heat current')
-xlabel('Temperature T_R (K) (T_L = 1 K)')
-%
-% figure(34)
-% contourf(w, tempvector, real(DOStemp), 100,'Linestyle','none')
-% title('Density of states')
-% ylabel('Temperature T_R (K) (T_L = 1 K)')
-% colorbar
-%
-% figure(35)
-% contourf(w, tempvector, real(MDOSztemp), 100,'Linestyle','none')
-% title('Spin density of states (z)')
-% ylabel('Temperature T_R (K) (T_L = 1 K)')
-% colorbar
+  i = i+1;
+  h(i)=figure;
+  hold on
+  DM_values = DM{parameter};
+  for n = 1:3
+    plot(xaxis_variables, DM_values(n,:))
+  end
+  xlabel(xlabels(parameter))
+  ylabel('DM interactions')
+end

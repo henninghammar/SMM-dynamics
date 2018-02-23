@@ -27,9 +27,9 @@ plot(t, real(SjDMz),'black')
 plot(t, real(SjIz))
 title('Interactions z')
 legend('ejz', 'mz', 'jHz', 'DMz', 'Iz')
-
-%titles = {'ej', 'mv', 'Beff', 'jDM'};
-%plot_data = [ejvect; mvect; Beffvect; jDMvect];
+%
+% titles = {'ej', 'mv', 'Beff', 'jDM'};
+% plot_data = [ejvect; mvect; Beffvect; jDMvect];
 %
 % titles = {'ej', 'Beff', 'jDM'};
 % plot_data = [ejvect; Beffvect; jDMvect];

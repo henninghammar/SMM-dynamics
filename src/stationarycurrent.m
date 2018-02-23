@@ -1,6 +1,16 @@
 function [Ic, Isx, Isy, Isz, Ie, Iq, DOS, MDOSz] = stationarycurrent(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta)
-    stationarygreensfunction
+    [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, epsilon, w, J, S, wL, beta);
 
+    g0L=gamma; %Gamma left
+    g0R=gamma; %Gamma righ
+    gSL=pL*g0L;
+    gSR=pR*g0R;
+    g(1)=(g0L/2*(1+pL)+g0R/2*(1+pR)); %Gamma up
+    g(2)=(g0L/2*(1-pL)+g0R/2*(1-pR)); %Gamma down
+
+    fermiL = 1./(1+exp(beta(1).*(w+mu(1))));
+    fermiR = 1./(1+exp(beta(2).*(w+mu(2))));
+    
     self0less = 1i*g0L*fermiL;
     self0great = -1i*g0L*(1-fermiL);
     self1less = 1i*gSL*fermiL;
@@ -30,6 +40,13 @@ function [Ic, Isx, Isy, Isz, Ie, Iq, DOS, MDOSz] = stationarycurrent(pL, pR, gam
     Isy = Is0y + Is1y;
     Isz = Is0z + Is1z;
 
+    %Particle current
+    In0bare = -(1/(2*pi))*(self0less.*G0great - self0great.*G0less);
+    In1bare = -(1/(2*pi))*(self1less.*G1zgreat - self1great.*G1zless);
+    In0 = trapz(w,Ic0bare);
+    In1 = trapz(w,Ic1bare);
+    In = In0 + In1;
+
     %Energy current
     Ie0bare = -(1/(2*pi)).*w.*(self0less.*G0great - self0great.*G0less);
     Ie1bare = -(1/(2*pi)).*w.*(self1less.*G1zgreat - self1great.*G1zless);
@@ -38,7 +55,7 @@ function [Ic, Isx, Isy, Isz, Ie, Iq, DOS, MDOSz] = stationarycurrent(pL, pR, gam
     Ie = Ie0 + Ie1;
 
     %Heat current
-    Iq = Ie - mu(1)*Ic;
+    Iq = Ie - mu(1)*In;
 
     %In SI units
     %Iconv=1.602176565*10^(-19)/(6.58211928*10^(-16))*10^-3;%in A, elementary charge divided by hbar in eVs times 10^-3 as we use meV

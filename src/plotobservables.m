@@ -16,7 +16,7 @@ for loop=1:length(values)
     ISzm(loop,:)=Isz;
 end
 
-values = values./pi;
+%values = values./pi;
 Sxm=round(Sxm.*10^3)./10^3;
 Sym=round(Sym.*10^3)./10^3;
 Szm=round(Szm.*10^3)./10^3;

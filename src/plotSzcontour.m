@@ -20,6 +20,16 @@ linspace(255,89,thirdstep*csteps)', linspace(255,181,thirdstep*csteps)', linspac
 linspace(89,0,secondstep*csteps)', linspace(181,102,secondstep*csteps)', linspace(171,94,secondstep*csteps)'
 zeros(firststep*csteps,1), 102*ones(firststep*csteps,1), 94*ones(firststep*csteps,1)]./256;
 
+% firststep = 0.5;
+% secondstep = 0.5;
+% thirdstep = 0.5;
+% forthstep = 0.5;
+% %Alt 2
+% mymap = [255*ones(forthstep*csteps,1), 255*ones(forthstep*csteps,1), 255*ones(forthstep*csteps,1)
+% linspace(255,89,thirdstep*csteps)', linspace(255,181,thirdstep*csteps)', linspace(255,171,thirdstep*csteps)'
+% linspace(89,0,secondstep*csteps)', linspace(181,102,secondstep*csteps)', linspace(171,94,secondstep*csteps)'
+% zeros(firststep*csteps,1), 102*ones(firststep*csteps,1), 94*ones(firststep*csteps,1)]./256;
+
 h1=figure(1);
 contourf(t, values, Szm,100,'Linestyle','none')
 caxis([-1, 1])
@@ -29,17 +39,17 @@ ylabel(axisvariable)
 colormap(mymap)
 colorbar
 saveas(h1,strcat(outfolder,'Szcontour'),'fig');
-
-
-h2=figure(2);
-contourf(t, values, ejzmatrix,100,'Linestyle','none')
-caxis([-0.1, 0.1])
-title('ejz')
-xlabel('time')
-ylabel(axisvariable)
-colormap(mymap)
-colorbar
-saveas(h2,strcat(outfolder,'ejzcontour'),'fig');
+%
+%
+% h2=figure(2);
+% contourf(t, values, ejzmatrix,100,'Linestyle','none')
+% caxis([-0.1, 0.1])
+% title('ejz')
+% xlabel('time')
+% ylabel(axisvariable)
+% colormap(mymap)
+% colorbar
+% saveas(h2,strcat(outfolder,'ejzcontour'),'fig');
 
 % % For J
 % csteps = 100;

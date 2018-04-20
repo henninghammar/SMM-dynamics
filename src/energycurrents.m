@@ -26,15 +26,6 @@ IqL1(j)=IeL1(j)-mu(1)*InL1(j);
 IqR0(j)=IeR0(j)-mu(2)*InR0(j);
 IqR1(j)=IeR1(j)-mu(2)*InR1(j);
 
-% [G0lessent, G0greatent, G1xlessent, G1xgreatent, G1ylessent, G1ygreatent, G1zlessent, G1zgreatent] = greensfunction(t(j), t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
-% entropy0(j) = -imag(G0lessent).*log(imag(G0lessent));
-% if G1zlessent == 0
-%     entropy1(j) = 0;
-% else 
-%     entropy1(j) = -imag(G1zlessent).*log(imag(G1zlessent));
-% end
-% entropy(j) = entropy0(j) + entropy1(j);
-
 conv=1;%/(6.58211928*10^(-16))*10^-3;%in A, elementary charge divided by hbar in eVs times 10^-3
 InL(j)=(InL0(j)+InL1(j)).*conv;
 IeL(j)=(IeL0(j)+IeL1(j)).*conv;

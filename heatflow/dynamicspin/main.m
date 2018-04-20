@@ -41,7 +41,7 @@ for j=1:length(t)
     end
 
     %Time the calculation for each timestep
-    if(t(j)==floor(t(j)))
+    if(t(j)==floor(10*t(j)))
         timestep=t(j);
         timeused=toc;
         disp(['Timestep: ' num2str(timestep)])

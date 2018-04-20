@@ -35,7 +35,7 @@ for loopen=1:length(values)
     DMymatrix(loopen,:)=real(jDMvect(2,:));
     DMzmatrix(loopen,:)=real(jDMvect(3,:));
 end
-values = values./pi;
+%values = values./pi;
 % %
 % % h1=figure(1);
 % % contourf(t, values, Btotalx,100,'Linestyle','none')
@@ -262,20 +262,20 @@ colormap morgenstemning
 colorbar
 saveas(h36,strcat(outfolder,'SDMzcontour'),'fig');
 %
-% h37=figure(37);
-% contourf(t, values, DMzmatrix,100,'Linestyle','none')
-% title('DMz')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h37,strcat(outfolder,'DMzcontour'),'fig');
-%
-% h38=figure(38);
-% contourf(t, values, Izzmatrix,100,'Linestyle','none')
-% title('Izz')
-% xlabel('time')
-% ylabel(axisvariable)
-% colormap morgenstemning
-% colorbar
-% saveas(h38,strcat(outfolder,'Izzcontour'),'fig');
+h37=figure(37);
+contourf(t, values, DMzmatrix,100,'Linestyle','none')
+title('DMz')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h37,strcat(outfolder,'DMzcontour'),'fig');
+
+h38=figure(38);
+contourf(t, values, Izzmatrix,100,'Linestyle','none')
+title('Izz')
+xlabel('time')
+ylabel(axisvariable)
+colormap morgenstemning
+colorbar
+saveas(h38,strcat(outfolder,'Izzcontour'),'fig');

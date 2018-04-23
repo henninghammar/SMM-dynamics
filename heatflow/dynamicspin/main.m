@@ -41,13 +41,11 @@ for j=1:length(t)
     end
 
     %Time the calculation for each timestep
-    if(t(j)==floor(10*t(j)))
-        timestep=t(j);
-        timeused=toc;
-        disp(['Timestep: ' num2str(timestep)])
-        disp(['Timeused: ' num2str(timeused)])
-    end
-
+    timestep=t(j);
+    timeused=toc;
+    disp(['Timestep: ' num2str(timestep)])
+    disp(['Timeused: ' num2str(timeused)])
+    
     %Tau indicates integration from minus infinity to t. Here with a
     %cut-off at tback.
     tau = [-tstep2*tback+t(j):tstep2:t(j)];

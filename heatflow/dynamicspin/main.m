@@ -11,6 +11,8 @@
 t=[0:tstep:tmax];
 step=0.1;
 w=[-20:step:20];
+step2=0.1;
+w2=[-75:step2:75];
 
 %Defining a vector for the spin
 Sx=zeros(1,length(t));
@@ -45,7 +47,7 @@ for j=1:length(t)
     timeused=toc;
     disp(['Timestep: ' num2str(timestep)])
     disp(['Timeused: ' num2str(timeused)])
-    
+
     %Tau indicates integration from minus infinity to t. Here with a
     %cut-off at tback.
     tau = [-tstep2*tback+t(j):tstep2:t(j)];
@@ -73,7 +75,12 @@ for j=1:length(t)
 
         %Calculate self-energy K
         selfenergyK
-        energyselfenergyK
+    end
+
+    tauenergy = [-tstepenergy*tbackenergy+t(j):tstepenergy:t(j)];
+    for i=1:length(tauenergy)
+      [energyKLless(i), energyKLgreat(i), energyKRless(i), energyKRgreat(i)] = energyselfenergyK(w2, t(j), tauenergy(i), t0, t1, mu, T, kB);
+      [energyG0less(i), energyG0great(i), energyG1xless(i), energyG1xgreat(i), energyG1yless(i), energyG1ygreat(i), energyG1zless(i), energyG1zgreat(i)] = greensfunction(t(j), tauenergy(i), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
     end
 
     %Calculate charge and spin currents by integration over tau
@@ -115,10 +122,6 @@ for j=1:length(t)
 
         %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
         [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S2, J);
-
-        %Calculate self-energy K
-        selfenergyK
-
     end
 
     exchangeinteraction

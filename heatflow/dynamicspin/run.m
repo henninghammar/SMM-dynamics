@@ -34,12 +34,16 @@ eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
-tmax=3;
-tstep=0.025;
-tstep2=0.025/gamma;
-tback=600*gamma;
+tmax=10;
+tstep=0.1;
 t0=0;%50*tstep;
-t1=100;
+t1=5;
+%Integration backward
+tstep2=0.1/gamma;
+tback=200*gamma;
+%Integration energy
+tstepenergy=0.015;
+tbackenergy=500;
 
 kB=8.617324*10^-2; %Boltzmanns constant, in meV*K^-1
 T(1)=1; %Temperature in K
@@ -61,5 +65,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/runX.mat', outputFolder);
+outputFilename = sprintf('%s/pulse150w500tstep.mat', outputFolder);
 save(outputFilename)

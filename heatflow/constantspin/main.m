@@ -10,6 +10,8 @@
 t=[0:tstep:tmax];
 step=0.1;
 w=[-20:step:20];
+step2=0.1;
+w2=[-75:step2:75];
 
 %Defining a vector for the spin
 Sx=zeros(1,length(t));
@@ -40,12 +42,10 @@ for j=1:length(t)
     end
 
     %Time the calculation for each timestep
-    if(t(j)==floor(t(j)))
-        timestep=t(j);
-        timeused=toc;
-        disp(['Timestep: ' num2str(timestep)])
-        disp(['Timeused: ' num2str(timeused)])
-    end
+    timestep=t(j);
+    timeused=toc;
+    disp(['Timestep: ' num2str(timestep)])
+    disp(['Timeused: ' num2str(timeused)])
 
     %Tau indicates integration from minus infinity to t. Here with a
     %cut-off at tback.
@@ -60,7 +60,12 @@ for j=1:length(t)
 
         %Calculate self-energy K
         selfenergyK
-        energyselfenergyK
+    end
+
+    tauenergy = [-tstepenergy*tbackenergy+t(j):tstepenergy:t(j)];
+    for i=1:length(tauenergy)
+      [energyKLless(i), energyKLgreat(i), energyKRless(i), energyKRgreat(i)] = energyselfenergyK(w2, t(j), tauenergy(i), t0, t1, mu, T, kB);
+      [energyG0less(i), energyG0great(i), energyG1xless(i), energyG1xgreat(i), energyG1yless(i), energyG1ygreat(i), energyG1zless(i), energyG1zgreat(i)] = greensfunction(t(j), tauenergy(i), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
     end
 
     %Calculate charge and spin currents by integration over tau

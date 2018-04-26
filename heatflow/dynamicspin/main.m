@@ -96,6 +96,8 @@ for j=1:length(t)
     %Calculate the magnetic occupation of the QD
     [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
 
+    n(j) = QDoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
+
     %Calculate the effective fields
     effectivefields
 

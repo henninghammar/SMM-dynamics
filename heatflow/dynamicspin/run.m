@@ -19,7 +19,7 @@ pR=0;
 gamma=1;
 g0(1)=gamma;
 g0(2)=gamma;
-eV = gamma; %bias voltage
+eV = 4; %bias voltage
 mu(1)=eV/2; %chemical potential on left lead
 mu(2)=-eV/2; %chemical potential on right lead
 gfactor=2; %g-factor
@@ -29,15 +29,15 @@ J0=0.5*gamma; %Coupling strength
 Sz0=-cos(pi/4); %Spin z-component
 Sxy=sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
-epsilon=0; %Energy level of the quantum dot
+epsilon=1; %Energy level of the quantum dot
 eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
-tmax=10;
+tmax=1;
 tstep=0.1;
-t0=0;%50*tstep;
-t1=5;
+t0=0.5;%50*tstep;
+t1=100;
 %Integration backward
 tstep2=0.1/gamma;
 tback=200*gamma;
@@ -65,5 +65,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/pulse150w500tstep.mat', outputFolder);
+outputFilename = sprintf('%s/testQDoccupation2.mat', outputFolder);
 save(outputFilename)

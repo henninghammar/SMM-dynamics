@@ -23,9 +23,9 @@ mu(1)=eV/2; %chemical potential on left lead
 mu(2)=-eV/2; %chemical potential on right lead
 gfactor=2; %g-factor
 myB=5.78838175*10^(-2); %Bohr magneton in meV*T^-1
-B=0; %Magnetic field in Tesla
-J0=0; %Coupling strength
-Sz0=0;%cos(pi/4); %Spin z-component
+B=1; %Magnetic field in Tesla
+J0=1; %Coupling strength
+Sz0=1;%cos(pi/4); %Spin z-component
 Sxy=0;%sin(pi/4); %Spin xy-component
 wL=gfactor*myB*B; %Frequency
 epsilon=0; %Energy level of the quantum dot
@@ -33,10 +33,10 @@ eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
-tmax=6;
+tmax=1;
 tstep=0.1;
 t0=0;%50*tstep;
-t1=3;
+t1=0.5;
 %Integration backward
 tstep2=0.1/gamma;
 tback=200*gamma;
@@ -62,5 +62,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/pulse150w500tstep.mat', outputFolder);
+outputFilename = sprintf('%s/pulsemagnetic2withoutrenorm.mat', outputFolder);
 save(outputFilename)

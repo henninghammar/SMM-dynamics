@@ -68,6 +68,10 @@ for j=1:length(t)
       [energyG0less(i), energyG0great(i), energyG1xless(i), energyG1xgreat(i), energyG1yless(i), energyG1ygreat(i), energyG1zless(i), energyG1zgreat(i)] = greensfunction(t(j), tauenergy(i), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
     end
 
+    %Calculate the occupations and DOS of the QD
+    [n(j), mx, my, mz, DOS(j)] = QDoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
+    renormalization
+
     %Calculate charge and spin currents by integration over tau
     currents
     energycurrents
@@ -77,9 +81,6 @@ for j=1:length(t)
 
     %Calculate the internal field given the Green's functions
     internalfield
-
-    %Calculate the magnetic occupation of the QD
-    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
 
     %Calculate the effective fields
     effectivefields

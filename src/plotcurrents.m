@@ -10,8 +10,8 @@ for loop=1:length(values)
     ISxm(loop,:)=Isx;
     ISym(loop,:)=Isy;
     ISzm(loop,:)=Isz;
-    IeLm(loop,:)=IeL1;
-    IqLm(loop,:)=IqL1;
+    IeLm(loop,:)=IeL;
+    IqLm(loop,:)=IqL;
 end
 
 labels = {'Spin (z-direction)', 'Charge current', 'Spin current (z-direction)', 'Energy current', 'Heat current'};

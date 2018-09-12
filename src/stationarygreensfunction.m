@@ -1,4 +1,4 @@
-function [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, epsilon, w, J, S, wL, beta)
+function [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, w, J, S, wL, beta)
 
 Sx = S(1);
 Sy = S(2);

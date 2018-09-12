@@ -13,12 +13,12 @@ addpath('../../src')
 tic
 
 %Initial values
-pL=0; %Polarization of gamma_up and gamma_down
-pR=0;
+pL=0.5; %Polarization of gamma_up and gamma_down
+pR=0.5;
 gamma=1;
 g0(1)=gamma;
 g0(2)=gamma;
-eV = 2; %bias voltage
+eV = 1; %bias voltage
 mu(1)=eV/2; %chemical potential on left lead
 mu(2)=-eV/2; %chemical potential on right lead
 gfactor=2; %g-factor
@@ -33,10 +33,10 @@ eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
 
 %Time variables and time and energy step-size
-tmax=1;
+tmax=5;
 tstep=0.1;
 t0=0;%50*tstep;
-t1=0.5;
+t1=10;
 %Integration backward
 tstep2=0.1/gamma;
 tback=200*gamma;
@@ -62,5 +62,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/pulsemagnetic2withoutrenorm.mat', outputFolder);
+outputFilename = sprintf('%s/entropyproductionS1p05J1.mat', outputFolder);
 save(outputFilename)

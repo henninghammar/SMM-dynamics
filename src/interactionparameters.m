@@ -1,8 +1,8 @@
 function [JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx, GIyy, GIzz, GIxy, GIxz, GIyz, GDx, GDy, GDz] = interactionparameters(pL, pR, gamma, mu, eps, epsilon, w, dw, J, S, wL, beta)
-    [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, epsilon, w, J, S, wL, beta);
+    [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, w, J, S, wL, beta);
 
     delta = 10^-5;
-    % 
+    %
     % %Calculation method 1
     % for i = 1:length(w)
     %     w2 = w(i);

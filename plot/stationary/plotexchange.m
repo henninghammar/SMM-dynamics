@@ -1,14 +1,9 @@
-% xaxis = {eVvector; epsvector; Jvector; tempvector};
-% xlabels = {'Bias voltage (1/Gamma)', 'Gate voltage (1/Gamma)', 'Exchange coupling (1/Gamma)', 'Temperature T_R (K) (T_L = 1 K)'};
-% Heisenberg = {JHbias; JHgate; JHJ; JHtemp};
-% Ising = {Isingbias; Isinggate; IsingJ; Isingtemp};
-% DM = {DMbias; DMgate; DMJ; DMtemp};
+xaxis = {eVvector; epsvector; Jvector; tempvector};
+xlabels = {'Bias voltage (1/Gamma)', 'Gate voltage (1/Gamma)', 'Exchange coupling (1/Gamma)', 'Temperature T_R (K) (T_L = 1 K)'};
+Heisenberg = {JHbias; JHgate; JHJ; JHtemp};
+Ising = {Isingbias; Isinggate; IsingJ; Isingtemp};
+DM = {DMbias; DMgate; DMJ; DMtemp};
 
-xaxis = {eVvector; epsvector};
-xlabels = {'Bias voltage (1/Gamma)', 'Gate voltage (1/Gamma)'};
-Heisenberg = {JHbias; JHgate};
-Ising = {Isingbias; Isinggate};
-DM = {DMbias; DMgate};
 for parameter = 1:length(Heisenberg)
   i = i+1;
   h(i)=figure;

@@ -15,22 +15,3 @@ for parameter = 1:length(xlabels)
     ylabel(labels(i))
   end
 end
-%
-% values = epsvector;
-% labels = {'Transmission (up)', 'Transmission (down)'};
-% m = 0;
-% for i = 1:length(labels)
-%   m = m + 1;
-%   h(m)=figure;
-%   hold on
-%   for loop=1:length(values)
-%     plot_data = {T_up(loop,:); T_down(loop,:)};
-%     plot_variables = plot_data{i};
-%     plot(plot_variables)
-%     title(labels(i))
-%     xlabel('Energy')
-%     ylabel(labels(i))
-%     legend()
-%     %legend('eV = \Gamma', 'eV = 2\Gamma', 'eV = 3\Gamma', 'eV = 4\Gamma', 'eV = 5\Gamma');
-%   end
-% end

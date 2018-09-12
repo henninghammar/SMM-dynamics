@@ -25,19 +25,3 @@ title('Sy')
 h(7)=figure;
 plot(t, Sz)
 title('Sz')
-%
-% h(8)=figure;
-% plot(t, N)
-% title('DOS')
-%
-% h(9)=figure;
-% plot(t, Mx)
-% title('MDOSx')
-%
-% h(10)=figure;
-% plot(t, My)
-% title('MDOSy')
-%
-% h(11)=figure;
-% plot(t, Mz)
-% title('MDOSz')

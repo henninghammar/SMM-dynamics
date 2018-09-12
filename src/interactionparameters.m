@@ -80,7 +80,7 @@ function [JH, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, Dx, Dy, Dz, ejx, ejy, ejz, GJH, GIxx
     %Calculation method 2
     w2 = linspace(-10,10,203);
     for i = 1:length(w2)
-        [G0less2, G0great2, G1xless2, G1xgreat2, G1yless2, G1ygreat2, G1zless2, G1zgreat2] = stationarygreensfunction(pL, pR, gamma, mu, eps, epsilon, w2(i), J, S, wL, beta);
+        [G0less2, G0great2, G1xless2, G1xgreat2, G1yless2, G1ygreat2, G1zless2, G1zgreat2] = stationarygreensfunction(pL, pR, gamma, mu, eps, w2(i), J, S, wL, beta);
 
         ejxbare=-J^2/(2*pi^2).*((epsilon.*G0less+wL/2.*G1zless).*G1xgreat2-(epsilon.*G0great+wL/2.*G1zgreat).*G1xless2...
             +(epsilon.*G1xless-1i.*G1yless).*G0great2-(epsilon.*G1xgreat-1i.*G1ygreat).*G0less2...

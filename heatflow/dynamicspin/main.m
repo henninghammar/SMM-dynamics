@@ -92,7 +92,7 @@ for j=1:length(t)
     energycurrents
 
     %Calculate the exchange interaction given the Green's functions
-    exchangeinteraction
+    exchangeinteractionplusanisotropy
 
     %Calculate the internal field given the Green's functions
     internalfield
@@ -125,8 +125,8 @@ for j=1:length(t)
         [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S2, J);
     end
     renormalization
-    
-    exchangeinteraction
+
+    exchangeinteractionplusanisotropy
 
     internalfield
 

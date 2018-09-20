@@ -32,6 +32,7 @@ wL=gfactor*myB*B; %Frequency
 epsilon=0; %Energy level of the quantum dot
 eps(1)=epsilon+0.5*wL;
 eps(2)=epsilon-0.5*wL;
+Dzz = 0.1; %Uniaxial anisotropy
 
 %Time variables and time and energy step-size
 tmax=1;
@@ -49,8 +50,6 @@ kB=8.617324*10^-2; %Boltzmanns constant, in meV*K^-1
 T(1)=1; %Temperature in K
 T(2)=1;
 
-%corepulse
-%mainOld
 main
 
 toc
@@ -65,5 +64,5 @@ toc
 
 %Savedata
 outputFolder = 'output';
-outputFilename = sprintf('%s/testrenormalization3.mat', outputFolder);
+outputFilename = sprintf('%s/test.mat', outputFolder);
 save(outputFilename)

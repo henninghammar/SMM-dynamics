@@ -1,4 +1,4 @@
-function [Ic, Isx, Isy, Isz, IeL, IqL, IeR, IqR, InL, DOS, MDOSz] = stationarycurrent(pL, pR, gamma, mu, eps, w, dw, J, S, wL, beta)
+function [Ic, Isx, Isy, Isz, IeL, IqL, IeR, IqR, InL, InR, DOS, MDOSz, Iq0L, Iq1L, Iq0R, Iq1R] = stationarycurrent(pL, pR, gamma, mu, eps, w, dw, J, S, wL, beta)
     [G0less, G0great, G1xless, G1xgreat, G1yless, G1ygreat, G1zless, G1zgreat] = stationarygreensfunction(pL, pR, gamma, mu, eps, w, J, S, wL, beta);
 
     g0L=gamma; %Gamma left

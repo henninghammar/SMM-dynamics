@@ -2,23 +2,23 @@
 
 InL0bare=KLgreat.*G0less+KLless.*G0great;
 InL1bare=KLgreat.*G1zless+KLless.*G1zgreat;
-InL0(j)=-4.*g0(1)*imag(trapz(tau,InL0bare));
-InL1(j)=-4.*gS(1)*imag(trapz(tau,InL1bare));
+InL0(j)=4.*g0(1)*imag(trapz(tau,InL0bare));
+InL1(j)=4.*gS(1)*imag(trapz(tau,InL1bare));
 
 InR0bare=KRgreat.*G0less+KRless.*G0great;
 InR1bare=KRgreat.*G1zless+KRless.*G1zgreat;
-InR0(j)=-4.*g0(2)*imag(trapz(tau,InR0bare));
-InR1(j)=-4.*gS(2)*imag(trapz(tau,InR1bare));
+InR0(j)=4.*g0(2)*imag(trapz(tau,InR0bare));
+InR1(j)=4.*gS(2)*imag(trapz(tau,InR1bare));
 
 IeL0bare=energyKLgreat.*energyG0less+energyKLless.*energyG0great;
 IeL1bare=energyKLgreat.*energyG1zless+energyKLless.*energyG1zgreat;
-IeL0(j)=-4.*g0(1)*imag(trapz(tauenergy,IeL0bare));
-IeL1(j)=-4.*gS(1)*imag(trapz(tauenergy,IeL1bare));
+IeL0(j)=4.*g0(1)*imag(trapz(tauenergy,IeL0bare));
+IeL1(j)=4.*gS(1)*imag(trapz(tauenergy,IeL1bare));
 
 IeR0bare=energyKRgreat.*energyG0less+energyKRless.*energyG0great;
 IeR1bare=energyKRgreat.*energyG1zless+energyKRless.*energyG1zgreat;
-IeR0(j)=-4.*g0(2)*imag(trapz(tauenergy,IeR0bare));
-IeR1(j)=-4.*gS(2)*imag(trapz(tauenergy,IeR1bare));
+IeR0(j)=4.*g0(2)*imag(trapz(tauenergy,IeR0bare));
+IeR1(j)=4.*gS(2)*imag(trapz(tauenergy,IeR1bare));
 
 IqL0(j)=IeL0(j)-mu(1)*InL0(j);
 IqL1(j)=IeL1(j)-mu(1)*InL1(j);

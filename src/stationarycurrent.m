@@ -22,19 +22,19 @@ function [Ic, Isx, Isy, Isz, IeL, IqL, IeR, IqR, InL, InR, DOS, MDOSz, Iq0L, Iq1
     self1greatR = -1i*gSR*(1-fermiR);
 
     %Charge current
-    Ic0bare = -(1/(2*pi))*(self0less.*G0great - self0great.*G0less);
-    Ic1bare = -(1/(2*pi))*(self1less.*G1zgreat - self1great.*G1zless);
+    Ic0bare = -(1/pi)*(self0less.*G0great - self0great.*G0less);
+    Ic1bare = -(1/pi)*(self1less.*G1zgreat - self1great.*G1zless);
     Ic0 = trapz(w,Ic0bare);
     Ic1 = trapz(w,Ic1bare);
     Ic = Ic0 + Ic1;
 
     %Spin current
-    Is0xbare = -(1/(2*pi))*(self0less.*G1xgreat - self0great.*G1xless);
-    Is0ybare = -(1/(2*pi))*(self0less.*G1ygreat - self0great.*G1yless);
-    Is0zbare = -(1/(2*pi))*(self0less.*G1zgreat - self0great.*G1zless);
-    Is1xbare = 1i*(1/(2*pi))*(self1less.*G1xgreat - self1great.*G1xless);
-    Is1ybare = -1i*(1/(2*pi))*(self1less.*G1ygreat - self1great.*G1yless);
-    Is1zbare = -(1/(2*pi))*(self1less.*G1zgreat - self1great.*G1zless);
+    Is0xbare = -(1/pi)*(self0less.*G1xgreat - self0great.*G1xless);
+    Is0ybare = -(1/pi)*(self0less.*G1ygreat - self0great.*G1yless);
+    Is0zbare = -(1/pi)*(self0less.*G1zgreat - self0great.*G1zless);
+    Is1xbare = 1i*(1/pi)*(self1less.*G1xgreat - self1great.*G1xless);
+    Is1ybare = -1i*(1/pi)*(self1less.*G1ygreat - self1great.*G1yless);
+    Is1zbare = -(1/pi)*(self1less.*G1zgreat - self1great.*G1zless);
     Is0x = trapz(w,Is0xbare);
     Is0y = trapz(w,Is0ybare);
     Is0z = trapz(w,Is0zbare);
@@ -46,27 +46,27 @@ function [Ic, Isx, Isy, Isz, IeL, IqL, IeR, IqR, InL, InR, DOS, MDOSz, Iq0L, Iq1
     Isz = Is0z + Is1z;
 
     %Particle current
-    In0bare = (1/(2*pi))*(self0less.*G0great - self0great.*G0less);
-    In1bare = (1/(2*pi))*(self1less.*G1zgreat - self1great.*G1zless);
+    In0bare = (1/pi)*(self0less.*G0great - self0great.*G0less);
+    In1bare = (1/pi)*(self1less.*G1zgreat - self1great.*G1zless);
     In0L = trapz(w,In0bare);
     In1L = trapz(w,In1bare);
     InL = In0L + In1L;
 
-    In0bareR = (1/(2*pi))*(self0lessR.*G0great - self0greatR.*G0less);
-    In1bareR = (1/(2*pi))*(self1lessR.*G1zgreat - self1greatR.*G1zless);
+    In0bareR = (1/pi)*(self0lessR.*G0great - self0greatR.*G0less);
+    In1bareR = (1/pi)*(self1lessR.*G1zgreat - self1greatR.*G1zless);
     In0R = trapz(w,In0bareR);
     In1R = trapz(w,In1bareR);
     InR = In0R + In1R;
 
     %Energy current
-    Ie0bare = (1/(2*pi)).*w.*(self0less.*G0great - self0great.*G0less);
-    Ie1bare = (1/(2*pi)).*w.*(self1less.*G1zgreat - self1great.*G1zless);
+    Ie0bare = (1/pi)).*w.*(self0less.*G0great - self0great.*G0less);
+    Ie1bare = (1/pi).*w.*(self1less.*G1zgreat - self1great.*G1zless);
     Ie0L = trapz(w,Ie0bare);
     Ie1L = trapz(w,Ie1bare);
     IeL = Ie0L + Ie1L;
 
-    Ie0bareR = (1/(2*pi)).*w.*(self0lessR.*G0great - self0greatR.*G0less);
-    Ie1bareR = (1/(2*pi)).*w.*(self1lessR.*G1zgreat - self1greatR.*G1zless);
+    Ie0bareR = (1/pi).*w.*(self0lessR.*G0great - self0greatR.*G0less);
+    Ie1bareR = (1/pi).*w.*(self1lessR.*G1zgreat - self1greatR.*G1zless);
     Ie0R = trapz(w,Ie0bareR);
     Ie1R = trapz(w,Ie1bareR);
     IeR = Ie0R + Ie1R;

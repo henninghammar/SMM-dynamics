@@ -59,7 +59,7 @@ function [Ic, Isx, Isy, Isz, IeL, IqL, IeR, IqR, InL, InR, DOS, MDOSz, Iq0L, Iq1
     InR = In0R + In1R;
 
     %Energy current
-    Ie0bare = (1/pi)).*w.*(self0less.*G0great - self0great.*G0less);
+    Ie0bare = (1/pi).*w.*(self0less.*G0great - self0great.*G0less);
     Ie1bare = (1/pi).*w.*(self1less.*G1zgreat - self1great.*G1zless);
     Ie0L = trapz(w,Ie0bare);
     Ie1L = trapz(w,Ie1bare);

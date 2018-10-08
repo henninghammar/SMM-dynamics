@@ -80,11 +80,11 @@ function [Ic, Isx, Isy, Isz, IeL, IqL, IeR, IqR, InL, InR, DOS, MDOSz, Iq0L, Iq1
     IqR = Iq0R + Iq1R;
 
     %In SI units
-    Iconv=1.602176565*10^(-19)/(6.58211928*10^(-16))*10^-3;%in A, elementary charge divided by hbar in eVs times 10^-3 as we use meV
-    Ic = Ic.*Iconv;
-    Isx = Isx.*Iconv;
-    Isy = Isy.*Iconv;
-    Isz = Isz.*Iconv;
+    % Iconv=1.602176565*10^(-19)/(6.58211928*10^(-16))*10^-3;%in A, elementary charge divided by hbar in eVs times 10^-3 as we use meV
+    % Ic = Ic.*Iconv;
+    % Isx = Isx.*Iconv;
+    % Isy = Isy.*Iconv;
+    % Isz = Isz.*Iconv;
 
     %energyconv = 1/(6.58211928*10^(-16))*10^-3;%1 divided by hbar in eVs times 10^-3 as we use meV
     %Ie = Ie*energyconv;

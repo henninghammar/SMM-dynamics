@@ -8,8 +8,8 @@ g0L=gamma; %Gamma left
 g0R=gamma; %Gamma righ
 gSL=pL*g0L;
 gSR=pR*g0R;
-g(1)=(g0L/2*(1+pL)+g0R/2*(1+pR))*2; %Gamma up
-g(2)=(g0L/2*(1-pL)+g0R/2*(1-pR))*2; %Gamma down
+g(1)=(g0L/2*(1+pL)+g0R/2*(1+pR)); %Gamma up
+g(2)=(g0L/2*(1-pL)+g0R/2*(1-pR)); %Gamma down
 
 fermiL = 1./(1+exp(beta(1).*(w+mu(1))));
 fermiR = 1./(1+exp(beta(2).*(w+mu(2))));

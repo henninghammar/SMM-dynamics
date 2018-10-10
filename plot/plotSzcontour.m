@@ -8,8 +8,7 @@ for loop=1:length(values)
     Iszm(loop,:)=real(Isz);
 end
 
-mu=eV(1)-eV(2);
-%values = mu*values/(2*pi);
+%values = eV*values/(2*pi);
 
 csteps = 100;
 
@@ -160,7 +159,7 @@ xlabel('time')
 ylabel(axisvariable)
 colormap(mymap18)
 colorbar
-#saveas(h1,strcat(outfolder,'Szcontour'),'fig');
+saveas(h1,strcat(outfolder,'Szcontour'),'fig');
 
 h2=figure(2);
 contourf(t, values, ejzmatrix,100,'Linestyle','none')
@@ -168,9 +167,9 @@ caxis([-0.1, 0.1])
 title('ejz')
 xlabel('time')
 ylabel(axisvariable)
-colormap(mymap)
+colormap(mymap18)
 colorbar
-% saveas(h2,strcat(outfolder,'ejzcontour'),'fig');
+saveas(h2,strcat(outfolder,'ejzcontour'),'fig');
 
 h3=figure(3);
 contourf(t, values, Iszm,100,'Linestyle','none')
@@ -180,3 +179,4 @@ xlabel('time')
 ylabel(axisvariable)
 colormap(mymap18)
 colorbar
+saveas(h3,strcat(outfolder,'Iszcontour'),'fig');

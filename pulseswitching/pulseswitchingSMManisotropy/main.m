@@ -2,7 +2,7 @@
 % ================================================
 % Author: Henning Hammar
 % ------------------
-% Calculation of spin dynamics and charge and energy currents through a polarized single-molecule magnet
+% Calculation of spin dynamics and current through a polarized single-molecule magnet
 % for a pulse.
 %
 % This file contains the logic and main calculations. Here, the full Green's function is used.
@@ -11,8 +11,6 @@
 t=[0:tstep:tmax];
 step=0.1;
 w=[-20:step:20];
-step2=0.1;
-w2=[-75:step2:75];
 
 %Defining a vector for the spin
 Sx=zeros(1,length(t));
@@ -43,10 +41,12 @@ for j=1:length(t)
     end
 
     %Time the calculation for each timestep
-    timestep=t(j);
-    timeused=toc;
-    disp(['Timestep: ' num2str(timestep)])
-    disp(['Timeused: ' num2str(timeused)])
+    if(t(j)==floor(t(j)))
+        timestep=t(j);
+        timeused=toc;
+        disp(['Timestep: ' num2str(timestep)])
+        disp(['Timeused: ' num2str(timeused)])
+    end
 
     %Tau indicates integration from minus infinity to t. Here with a
     %cut-off at tback.
@@ -77,25 +77,17 @@ for j=1:length(t)
         selfenergyK
     end
 
-    tauenergy = [-tstepenergy*tbackenergy+t(j):tstepenergy:t(j)];
-    for i=1:length(tauenergy)
-      [energyKLless(i), energyKLgreat(i), energyKRless(i), energyKRgreat(i)] = energyselfenergyK(w2, t(j), tauenergy(i), t0, t1, mu, T, kB);
-      [energyG0less(i), energyG0great(i), energyG1xless(i), energyG1xgreat(i), energyG1yless(i), energyG1ygreat(i), energyG1zless(i), energyG1zgreat(i)] = greensfunction(t(j), tauenergy(i), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
-    end
-
-    %Calculate the occupations and DOS of the QD
-    [n(j), mx, my, mz, DOS(j)] = QDoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
-    renormalization
-
     %Calculate charge and spin currents by integration over tau
     currents
-    energycurrents
 
     %Calculate the exchange interaction given the Green's functions
-    exchangeinteraction
+    exchangeinteractionplusanisotropy
 
     %Calculate the internal field given the Green's functions
     internalfield
+
+    %Calculate the magnetic occupation of the QD
+    [mx, my, mz] = QDmagneticoccupation(t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S, J);
 
     %Calculate the effective fields
     effectivefields
@@ -123,10 +115,13 @@ for j=1:length(t)
 
         %Green's function of (tau,t) for each timestep tau with integration over energies w/omega
         [G0less2(i), G0great2(i), G1xless2(i), G1xgreat2(i), G1yless2(i), G1ygreat2(i), G1zless2(i), G1zgreat2(i)] = greensfunction(tau(i), t(j), t0, t1, eps, g, g0, gS, mu, w, fermi, S2, J);
-    end
-    renormalization
 
-    exchangeinteraction
+        %Calculate self-energy K
+        selfenergyK
+
+    end
+
+    exchangeinteractionplusanisotropy
 
     internalfield
 

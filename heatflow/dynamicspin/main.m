@@ -92,7 +92,7 @@ for j=1:length(t)
     energycurrents
 
     %Calculate the exchange interaction given the Green's functions
-    exchangeinteraction
+    exchangeinteractionplusanisotropy
 
     %Calculate the internal field given the Green's functions
     internalfield
@@ -126,7 +126,7 @@ for j=1:length(t)
     end
     renormalization
 
-    exchangeinteraction
+    exchangeinteractionplusanisotropy
 
     internalfield
 

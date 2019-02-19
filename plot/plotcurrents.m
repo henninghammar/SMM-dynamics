@@ -27,7 +27,6 @@ for i = 1:length(labels)
   title(labels(i))
   xlabel('Time')
   ylabel(axisvariable)
-  colormap morgenstemning
   colorbar
   saveas(h(m),strcat(outfolder,names{i}),'fig');
 end

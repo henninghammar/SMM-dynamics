@@ -17,6 +17,6 @@ The published code is based on the calculations in the thesis [Dynamic of Magnet
 
 Articles based on the code:
 * [H. Hammar and J. Fransson, "Time-dependent spin and transport properties of a single-molecule magnet in a tunnel junction", Phys. Rev. B 94, 054311 (2016)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.94.054311)
-* [H. Hammar and J. Fransson, "Transient spin dynamics in a single-molecule magnet", Phys. Rev. B 96, 214401 (2017)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.94.054311)
-* [H. Hammar and J. Fransson, "Dynamical exchange and phase induced switching of a localized molecular spin", Phys. Rev. B 98, 174438 (2018)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.94.054311)
+* [H. Hammar and J. Fransson, "Transient spin dynamics in a single-molecule magnet", Phys. Rev. B 96, 214401 (2017)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.214401)
+* [H. Hammar and J. Fransson, "Dynamical exchange and phase induced switching of a localized molecular spin", Phys. Rev. B 98, 174438 (2018)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.98.174438)
 * [H. Hammar and J. Fransson, "Spin-dependent heat signatures of single-molecule spin dynamics", arXiv:1807.07019 (2018)](https://arxiv.org/abs/1807.07019)

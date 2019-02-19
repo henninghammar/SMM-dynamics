@@ -11,6 +11,10 @@ The code is divided into the following folders:
 * heatflow - Project folder to run code for heat flow calculation in a SMM.
 * LLGarticle - Project folder to compare different approximations for calculating dynamics of a SMM.
 
+## License
+
+SMM Dynamics is free software and licensed under MIT License. See more information in the file 'LICENSE.txt'.
+
 ## Further reading and articles to cite
 
 The published code is based on the calculations in the thesis [Dynamic of Magnetic Molecules under Electrical Control](http://uu.diva-portal.org/smash/record.jsf?pid=diva2%3A1268379&dswid=-7793).
